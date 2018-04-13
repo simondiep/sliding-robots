@@ -1,0 +1,14 @@
+{
+  "name": "ricochet-robots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.0"
+  }
+}
