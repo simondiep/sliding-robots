@@ -15,7 +15,7 @@ export default class CanvasView {
         this.context.fillRect(0, 0, this.width, this.height);
 
         this.context.strokeStyle = '#2a2a2a';
-        this.context.lineWidth = 0.5;
+        this.context.lineWidth = 1;
         for (let i = this.squareSizeInPixels / 2; i < this.width || i < this.height; i += this.squareSizeInPixels) {
             // draw horizontal lines
             this.context.moveTo(i, 0);

@@ -1,16 +1,22 @@
 import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
 import Coordinate from '../model/coordinate.js';
-import { applyKeyCodeToPlayerLocation } from './key-input-controller.js';
+import { applyKeyCodeToPlayerLocation } from './movement-controller.js';
 
 /**
  * Controls all game logic
  */
 export default class GameController {
     constructor() {
-        this.playerLocation = new Coordinate(1,1);
         this.keyDownCallback = this.keyDownCallback.bind(this);
-        this.gameView = new GameView(this.keyDownCallback);
+        const initializeGameCallback = this.initializeGame.bind(this);
+        this.gameView = new GameView(this.keyDownCallback, initializeGameCallback);
+        this.initializeGame();
+    }
+
+    initializeGame() {
+        this.playerLocation = new Coordinate(1,1);
+        this.goalLocation = new Coordinate(3,3);
         const board = {
             SQUARE_SIZE_IN_PIXELS: 12.5,
             HORIZONTAL_SQUARES: 50,
@@ -18,15 +24,24 @@ export default class GameController {
         };
         this.initializeWalls(board.HORIZONTAL_SQUARES, board.VERTICAL_SQUARES);
         this.createBoard(board);
+        this.gameView.initializeGame();
         this.renderGame();
     }
 
     renderGame() {
+
         this.canvasView.clear();
+
+        this.canvasView.drawSquare(this.goalLocation, 'green');
 
         this.canvasView.drawSquare(this.playerLocation, 'red');
 
         this.canvasView.drawSquares(this.walls, 'gray');
+
+        if (this.playerLocation.equals(this.goalLocation)) {
+            this.gameView.showVictoryScreen();
+            return;
+        }
 
         const self = this;
         // Run in a loop
@@ -70,6 +85,10 @@ export default class GameController {
      *******************/
 
     keyDownCallback(keyCode) {
+        const previousPlayerLocation = this.playerLocation;
         this.playerLocation = applyKeyCodeToPlayerLocation(keyCode, this.playerLocation, this.walls);
+        if (!previousPlayerLocation.equals(this.playerLocation)) {
+            this.gameView.incrementNumberOfMoves();
+        }
     }
 }

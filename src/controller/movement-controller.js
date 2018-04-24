@@ -1,6 +1,5 @@
 import Coordinate from '../model/coordinate.js';
 import Direction from '../model/direction.js';
-import { getNumberOfMovesLabel } from '../view/dom-helper.js';
 
 const KEYCODE_TO_DIRECTION = {
   // WASD and arrow keys
@@ -27,11 +26,6 @@ export function applyKeyCodeToPlayerLocation(keyCode, playerLocation, wallLocati
   if (insideWall) {
     return playerLocation;
   }
-
-  // Increment moves
-  const numberOfMovesLabel = getNumberOfMovesLabel();
-  let numberOfMoves = numberOfMovesLabel.innerHTML;
-  numberOfMovesLabel.innerHTML = ++numberOfMoves;
 
   return newPlayerLocation;
 }
