@@ -7,6 +7,14 @@ export default class Coordinate {
         this.y = y;
     }
 
+    getX() {
+      return this.x;
+    }
+
+    getY() {
+      return this.y;
+    }
+
     equals(otherCoordinate) {
         return this.x === otherCoordinate.x && this.y === otherCoordinate.y;
     }

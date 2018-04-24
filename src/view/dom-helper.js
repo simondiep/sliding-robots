@@ -13,8 +13,4 @@ export default class DomHelper {
     static getGameBoardDiv() {
         return document.getElementById('game-board');
     }
-
-    static showAllContent() {
-        document.getElementById('cover').style.visibility = 'visible';
-    }
 }

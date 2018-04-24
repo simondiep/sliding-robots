@@ -13,11 +13,6 @@ export default class GameView {
         window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
     }
 
-    ready() {
-        // Show everything when ready
-        DomHelper.showAllContent();
-    }
-
     /*******************
      *  Event handling *
      *******************/
