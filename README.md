@@ -5,8 +5,9 @@ A simple Canvas game where you try to get a robot to a destination.
 Development in-progress
 
 Current functionality:
- - Walls drawn
  - One moveable robot via WASD
+ - Walls
+ - Move Counter
 
 ## Requirements to Run in development mode
 

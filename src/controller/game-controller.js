@@ -1,4 +1,4 @@
-import CanvasFactory from '../view/canvas-factory.js';
+import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
 import Coordinate from '../model/coordinate.js';
 import { applyKeyCodeToPlayerLocation } from './key-input-controller.js';
@@ -37,7 +37,7 @@ export default class GameController {
 
     createBoard(board) {
         this.canvasView =
-            CanvasFactory.createCanvasView(
+            createCanvasView(
                 board.SQUARE_SIZE_IN_PIXELS, board.HORIZONTAL_SQUARES, board.VERTICAL_SQUARES);
         this.canvasView.clear();
     }
@@ -70,6 +70,6 @@ export default class GameController {
      *******************/
 
     keyDownCallback(keyCode) {
-        this.playerLocation = applyKeyCodeToPlayerLocation(keyCode, this.playerLocation);
+        this.playerLocation = applyKeyCodeToPlayerLocation(keyCode, this.playerLocation, this.walls);
     }
 }
