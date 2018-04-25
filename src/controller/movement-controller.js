@@ -13,19 +13,28 @@ const KEYCODE_TO_DIRECTION = {
   39: Direction.RIGHT,
 };
 
-export function applyKeyCodeToPlayerLocation(keyCode, playerLocation, wallLocations) {
-  const newDirection = KEYCODE_TO_DIRECTION[keyCode];
-  if (!newDirection) {
-    return playerLocation;
-  }
-  const newPlayerLocation = new Coordinate(playerLocation.getX() + newDirection.x, playerLocation.getY() + newDirection.y);
-  const insideWall = wallLocations.some(function (loc) {
-    return loc.equals(newPlayerLocation);
-  });
-
-  if (insideWall) {
-    return playerLocation;
+export function applyKeyCodeToRobot(keyCode, robot) {
+  if (robot.getDirection()) {
+    // Don't change direction if already moving
+    return;
   }
 
-  return newPlayerLocation;
+  robot.setDirection(KEYCODE_TO_DIRECTION[keyCode]);
+}
+
+// Determine new location for robot based on current direction
+// Stops when a wall is hit
+export function moveRobot(robot, wallLocations) {
+  if (robot.getDirection()) {
+    const newLocation = new Coordinate(robot.getLocation().getX() + robot.getDirection().x, robot.getLocation().getY() + robot.getDirection().y);
+    const insideWall = wallLocations.some(function (loc) {
+      return loc.equals(newLocation);
+    });
+
+    if (insideWall) {
+      robot.clearDirection();
+    } else {
+      robot.setLocation(newLocation);
+    }
+  }
 }

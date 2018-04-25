@@ -1,7 +1,8 @@
 import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
 import Coordinate from '../model/coordinate.js';
-import { applyKeyCodeToPlayerLocation } from './movement-controller.js';
+import Robot from '../model/robot.js';
+import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
 
 /**
  * Controls all game logic
@@ -15,12 +16,12 @@ export default class GameController {
     }
 
     initializeGame() {
-        this.playerLocation = new Coordinate(1,1);
+        this.redRobot = new Robot(new Coordinate(1,1), 'red');
         this.goalLocation = new Coordinate(3,3);
         const board = {
-            SQUARE_SIZE_IN_PIXELS: 12.5,
-            HORIZONTAL_SQUARES: 50,
-            VERTICAL_SQUARES: 40,
+            SQUARE_SIZE_IN_PIXELS: 25,
+            HORIZONTAL_SQUARES: 20,
+            VERTICAL_SQUARES: 15,
         };
         this.initializeWalls(board.HORIZONTAL_SQUARES, board.VERTICAL_SQUARES);
         this.createBoard(board);
@@ -30,15 +31,24 @@ export default class GameController {
 
     renderGame() {
 
+        // Move the robot and keep track of number of moves
+        const previousRedRobotDirection = this.redRobot.getDirection();
+        moveRobot(this.redRobot, this.walls);
+        // TODO Don't count moving into wall as a move
+        if (previousRedRobotDirection && !this.redRobot.getDirection()) {
+            this.gameView.incrementNumberOfMoves();
+        }
+
         this.canvasView.clear();
 
         this.canvasView.drawSquare(this.goalLocation, 'green');
 
-        this.canvasView.drawSquare(this.playerLocation, 'red');
+        this.canvasView.drawSquare(this.redRobot.getLocation(), this.redRobot.getColor());
 
         this.canvasView.drawSquares(this.walls, 'gray');
 
-        if (this.playerLocation.equals(this.goalLocation)) {
+        if (this.redRobot.getLocation().equals(this.goalLocation)) {
+            this.gameView.incrementNumberOfMoves();
             this.gameView.showVictoryScreen();
             return;
         }
@@ -78,6 +88,9 @@ export default class GameController {
         for (let index = 0; index <= verticalSquares; index++) {
           this.walls.push(new Coordinate(horizontalSquares, index));
         }
+
+        // Make it easy to win
+        this.walls.push(new Coordinate(this.goalLocation.getX() + 1, 1));
     }
 
     /*******************
@@ -85,10 +98,6 @@ export default class GameController {
      *******************/
 
     keyDownCallback(keyCode) {
-        const previousPlayerLocation = this.playerLocation;
-        this.playerLocation = applyKeyCodeToPlayerLocation(keyCode, this.playerLocation, this.walls);
-        if (!previousPlayerLocation.equals(this.playerLocation)) {
-            this.gameView.incrementNumberOfMoves();
-        }
+        applyKeyCodeToRobot(keyCode, this.redRobot);
     }
 }
