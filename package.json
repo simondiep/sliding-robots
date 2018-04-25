@@ -1,8 +1,8 @@
 {
-  "name": "ricochet-robots",
+  "name": "sliding-robots",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "live-server"
   },
