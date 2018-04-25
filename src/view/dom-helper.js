@@ -3,35 +3,35 @@
  */
 
 export function clearGameBoardDiv() {
-    document.getElementById('game-board').innerHTML = "";
+  document.getElementById('game-board').innerHTML = '';
 }
 
 export function createElement(elementName) {
-    return document.createElement(elementName);
+  return document.createElement(elementName);
 }
 
 export function getBody() {
-    return document.body;
+  return document.body;
 }
 
 export function getGameBoardDiv() {
-    return document.getElementById('game-board');
+  return document.getElementById('game-board');
 }
 
 export function incrementNumberOfMovesLabel() {
-    const numberOfMovesLabel = document.getElementById('numberOfMovesLabel');
-    let numberOfMoves = numberOfMovesLabel.innerHTML;
-    numberOfMovesLabel.innerHTML = ++numberOfMoves;
+  const numberOfMovesLabel = document.getElementById('numberOfMovesLabel');
+  let numberOfMoves = numberOfMovesLabel.innerHTML;
+  numberOfMovesLabel.innerHTML = ++numberOfMoves;
 }
 
 export function resetNumberOfMovesLabel() {
-    document.getElementById('numberOfMovesLabel').innerHTML = 0;
+  document.getElementById('numberOfMovesLabel').innerHTML = 0;
 }
 
 export function hideOverlay() {
-    document.getElementById("overlay").style.display = "none";
+  document.getElementById('overlay').style.display = 'none';
 }
 
 export function showOverlay() {
-    document.getElementById("overlay").style.display = "block";
+  document.getElementById('overlay').style.display = 'block';
 }

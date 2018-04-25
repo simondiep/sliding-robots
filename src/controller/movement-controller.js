@@ -26,8 +26,11 @@ export function applyKeyCodeToRobot(keyCode, robot) {
 // Stops when a wall is hit
 export function moveRobot(robot, wallLocations) {
   if (robot.getDirection()) {
-    const newLocation = new Coordinate(robot.getLocation().getX() + robot.getDirection().x, robot.getLocation().getY() + robot.getDirection().y);
-    const insideWall = wallLocations.some(function (loc) {
+    const newLocation = new Coordinate(
+      robot.getLocation().getX() + robot.getDirection().x,
+      robot.getLocation().getY() + robot.getDirection().y,
+    );
+    const insideWall = wallLocations.some(function(loc) {
       return loc.equals(newLocation);
     });
 
