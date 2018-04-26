@@ -1,12 +1,17 @@
 export default class Robot {
-  constructor(location, color) {
+  constructor(location, color, image) {
     this.location = location;
     this.color = color;
+    this.image = image;
     this.direction = null;
   }
 
   getColor() {
     return this.color;
+  }
+
+  getImage() {
+    return this.image;
   }
 
   getLocation() {

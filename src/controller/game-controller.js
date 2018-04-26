@@ -3,6 +3,7 @@ import GameView from '../view/game-view.js';
 import Coordinate from '../model/coordinate.js';
 import Robot from '../model/robot.js';
 import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
+import { getBlueRobotImage, getYellowRobotImage } from '../view/dom-helper.js';
 
 /**
  * Controls all game logic
@@ -17,8 +18,8 @@ export default class GameController {
 
   initializeGame() {
     this.robots = [];
-    this.robots.push(new Robot(new Coordinate(1, 1), 'red'));
-    this.robots.push(new Robot(new Coordinate(2, 2), 'blue'));
+    this.robots.push(new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()));
+    this.robots.push(new Robot(new Coordinate(2, 2), 'blue', getBlueRobotImage()));
     this.goalLocation = new Coordinate(3, 3);
     const board = {
       SQUARE_SIZE_IN_PIXELS: 25,
@@ -45,11 +46,11 @@ export default class GameController {
     this.canvasView.clear();
 
     this.canvasView.drawSquares(this.walls, 'gray');
-    this.canvasView.drawSquare(this.goalLocation, 'red');
+    this.canvasView.drawSquare(this.goalLocation, 'yellow');
     this.canvasView.drawText(this.goalLocation, 'white', 'G');
     // Draw all robots
     for (const robot of this.robots) {
-      this.canvasView.drawSquare(robot.getLocation(), robot.getColor());
+      this.canvasView.drawImage(robot.getLocation(), robot.getImage());
     }
 
     for (const robot of this.robots) {

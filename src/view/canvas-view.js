@@ -31,6 +31,18 @@ export default class CanvasView {
     this.context.stroke();
   }
 
+  drawImage(coordinate, image) {
+    const x = coordinate.x * this.squareSizeInPixels;
+    const y = coordinate.y * this.squareSizeInPixels;
+    this.context.drawImage(
+      image,
+      x - this.squareSizeInPixels / 2,
+      y - this.squareSizeInPixels / 2,
+      this.squareSizeInPixels,
+      this.squareSizeInPixels,
+    );
+  }
+
   drawSquares(coordinates, color) {
     for (const coordinate of coordinates) {
       this.drawSquare(coordinate, color);
@@ -52,7 +64,7 @@ export default class CanvasView {
 
   drawText(location, color, text) {
     this.context.save();
-    this.context.lineWidth = 1;
+    this.context.lineWidth = 5;
     this.context.strokeStyle = 'black';
     this.context.fillStyle = color;
     this.context.font = 'bold 24px Arial';

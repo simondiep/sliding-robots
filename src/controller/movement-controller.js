@@ -25,7 +25,7 @@ export function applyKeyCodeToRobot(keyCode, robots) {
   }
 
   for (const robot of robots) {
-    if (robot.getColor() === 'red' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
+    if (robot.getColor() === 'yellow' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
       robot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
     } else if (robot.getColor() === 'blue' && ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
       robot.setDirection(ARROW_KEYCODE_TO_DIRECTION[keyCode]);

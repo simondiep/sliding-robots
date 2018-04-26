@@ -18,6 +18,14 @@ export function getGameBoardDiv() {
   return document.getElementById('game-board');
 }
 
+export function getBlueRobotImage() {
+  return document.getElementById('blue-robot');
+}
+
+export function getYellowRobotImage() {
+  return document.getElementById('yellow-robot');
+}
+
 export function incrementNumberOfMovesLabel() {
   const numberOfMovesLabel = document.getElementById('numberOfMovesLabel');
   let numberOfMoves = numberOfMovesLabel.innerHTML;
