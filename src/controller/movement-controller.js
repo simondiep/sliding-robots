@@ -15,13 +15,16 @@ const ARROW_KEYCODE_TO_DIRECTION = {
   39: Direction.RIGHT,
 };
 
+// Only one robot can be moving at a time
 export function applyKeyCodeToRobot(keyCode, robots) {
   for (const robot of robots) {
     if (robot.getDirection()) {
       // Don't change direction if already moving
       return;
     }
+  }
 
+  for (const robot of robots) {
     if (robot.getColor() === 'red' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
       robot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
     } else if (robot.getColor() === 'blue' && ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
