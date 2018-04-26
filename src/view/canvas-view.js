@@ -49,4 +49,31 @@ export default class CanvasView {
     this.context.closePath();
     this.context.fill();
   }
+
+  drawText(location, color, text) {
+    this.context.save();
+    this.context.lineWidth = 1;
+    this.context.strokeStyle = 'black';
+    this.context.fillStyle = color;
+    this.context.font = 'bold 24px Arial';
+
+    const textWidth = this.context.measureText(text).width;
+    const textHeight = 24;
+    let x = location.x * this.squareSizeInPixels - textWidth / 2;
+    let y = location.y * this.squareSizeInPixels + textHeight / 2;
+    if (x < 0) {
+      x = 0;
+    } else if (x > this.width - textWidth) {
+      x = this.width - textWidth;
+    }
+    if (y < textHeight) {
+      y = textHeight;
+    } else if (y > this.height) {
+      y = this.height;
+    }
+    // Draw text specifying the bottom left corner
+    this.context.strokeText(text, x, y);
+    this.context.fillText(text, x, y);
+    this.context.restore();
+  }
 }

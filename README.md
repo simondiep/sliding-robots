@@ -4,10 +4,10 @@ A simple Canvas game where you try to get a robot to a destination.
 
 Current functionality:
 
-* One moveable robot via WASD
+* Two moveable robots via WASD and arrow keys
 * Walls
 * Move Counter
-* Win condition of reaching the green spot
+* Win condition
 
 ## Requirements to Run in development mode
 

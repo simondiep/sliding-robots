@@ -16,7 +16,9 @@ export default class GameController {
   }
 
   initializeGame() {
-    this.redRobot = new Robot(new Coordinate(1, 1), 'red');
+    this.robots = [];
+    this.robots.push(new Robot(new Coordinate(1, 1), 'red'));
+    this.robots.push(new Robot(new Coordinate(2, 2), 'blue'));
     this.goalLocation = new Coordinate(3, 3);
     const board = {
       SQUARE_SIZE_IN_PIXELS: 25,
@@ -30,26 +32,32 @@ export default class GameController {
   }
 
   renderGame() {
-    // Move the robot and keep track of number of moves
-    const previousRedRobotDirection = this.redRobot.getDirection();
-    moveRobot(this.redRobot, this.walls);
-    // TODO Don't count moving into wall as a move
-    if (previousRedRobotDirection && !this.redRobot.getDirection()) {
-      this.gameView.incrementNumberOfMoves();
+    for (const robot of this.robots) {
+      // Move the robot and keep track of number of moves
+      const previousRobotDirection = robot.getDirection();
+      moveRobot(robot, this.walls, this.robots);
+      // TODO Don't count moving into wall as a move
+      if (previousRobotDirection && !robot.getDirection()) {
+        this.gameView.incrementNumberOfMoves();
+      }
     }
 
     this.canvasView.clear();
 
-    this.canvasView.drawSquare(this.goalLocation, 'green');
-
-    this.canvasView.drawSquare(this.redRobot.getLocation(), this.redRobot.getColor());
-
     this.canvasView.drawSquares(this.walls, 'gray');
+    this.canvasView.drawSquare(this.goalLocation, 'red');
+    this.canvasView.drawText(this.goalLocation, 'white', 'G');
+    // Draw all robots
+    for (const robot of this.robots) {
+      this.canvasView.drawSquare(robot.getLocation(), robot.getColor());
+    }
 
-    if (this.redRobot.getLocation().equals(this.goalLocation)) {
-      this.gameView.incrementNumberOfMoves();
-      this.gameView.showVictoryScreen();
-      return;
+    for (const robot of this.robots) {
+      if (robot.getLocation().equals(this.goalLocation)) {
+        this.gameView.incrementNumberOfMoves();
+        this.gameView.showVictoryScreen();
+        return;
+      }
     }
 
     const self = this;
@@ -91,7 +99,7 @@ export default class GameController {
     }
 
     // Make it easy to win
-    this.walls.push(new Coordinate(this.goalLocation.getX() + 1, 1));
+    this.walls.push(new Coordinate(this.goalLocation.getX() + 2, 2));
   }
 
   /*******************
@@ -99,6 +107,6 @@ export default class GameController {
    *******************/
 
   keyDownCallback(keyCode) {
-    applyKeyCodeToRobot(keyCode, this.redRobot);
+    applyKeyCodeToRobot(keyCode, this.robots);
   }
 }
