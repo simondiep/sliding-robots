@@ -7,6 +7,7 @@ Current functionality:
 * Two moveable robots via WASD and arrow keys
 * Walls
 * Move Counter
+* Two puzzles
 * Win condition
 
 ## Requirements to Run in development mode

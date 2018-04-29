@@ -1,5 +1,5 @@
 import { getBody, hideOverlay, showOverlay } from './dom-helper.js';
-import { incrementNumberOfMovesLabel, resetNumberOfMovesLabel } from './dom-helper.js';
+import { incrementNumberOfMovesLabel, resetNumberOfMovesLabel, setMinimumNumberOfMovesLabel } from './dom-helper.js';
 
 const SPACE_BAR_KEYCODE = 32;
 const UP_ARROW_KEYCODE = 38;
@@ -15,8 +15,9 @@ export default class GameView {
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
   }
 
-  initializeGame() {
+  initializeGame(minimumNumberOfMoves) {
     resetNumberOfMovesLabel();
+    setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
   }
 
   incrementNumberOfMoves() {

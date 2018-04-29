@@ -40,6 +40,10 @@ export function hideOverlay() {
   document.getElementById('overlay').style.display = 'none';
 }
 
+export function setMinimumNumberOfMovesLabel(moves) {
+  document.getElementById('minimumNumberOfMovesLabel').innerHTML = moves;
+}
+
 export function showOverlay() {
   document.getElementById('overlay').style.display = 'block';
 }

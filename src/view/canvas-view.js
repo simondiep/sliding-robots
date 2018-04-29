@@ -67,7 +67,7 @@ export default class CanvasView {
     this.context.lineWidth = 5;
     this.context.strokeStyle = 'black';
     this.context.fillStyle = color;
-    this.context.font = 'bold 24px Arial';
+    this.context.font = 'bold 18px Arial';
 
     const textWidth = this.context.measureText(text).width;
     const textHeight = 24;

@@ -1,9 +1,8 @@
 import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
-import Coordinate from '../model/coordinate.js';
-import Robot from '../model/robot.js';
 import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
-import { getBlueRobotImage, getYellowRobotImage } from '../view/dom-helper.js';
+import { getRandomPuzzle } from '../puzzles/puzzle-factory.js';
+import Coordinate from '../model/coordinate.js';
 
 /**
  * Controls all game logic
@@ -17,26 +16,19 @@ export default class GameController {
   }
 
   initializeGame() {
-    this.robots = [];
-    this.robots.push(new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()));
-    this.robots.push(new Robot(new Coordinate(2, 2), 'blue', getBlueRobotImage()));
-    this.goalLocation = new Coordinate(3, 3);
-    const board = {
-      SQUARE_SIZE_IN_PIXELS: 25,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 15,
-    };
-    this.initializeWalls(board.HORIZONTAL_SQUARES, board.VERTICAL_SQUARES);
-    this.createBoard(board);
-    this.gameView.initializeGame();
+    this.puzzle = getRandomPuzzle();
+    const borderWalls = this.getBorderWalls(this.puzzle.board.HORIZONTAL_SQUARES, this.puzzle.board.VERTICAL_SQUARES);
+    this.walls = borderWalls.concat(this.puzzle.walls);
+    this.createBoard(this.puzzle.board);
+    this.gameView.initializeGame(this.puzzle.minimumNumberOfMoves);
     this.renderGame();
   }
 
   renderGame() {
-    for (const robot of this.robots) {
+    for (const robot of this.puzzle.robots) {
       // Move the robot and keep track of number of moves
       const previousRobotDirection = robot.getDirection();
-      moveRobot(robot, this.walls, this.robots);
+      moveRobot(robot, this.walls, this.puzzle.robots);
       // TODO Don't count moving into wall as a move
       if (previousRobotDirection && !robot.getDirection()) {
         this.gameView.incrementNumberOfMoves();
@@ -46,15 +38,15 @@ export default class GameController {
     this.canvasView.clear();
 
     this.canvasView.drawSquares(this.walls, 'gray');
-    this.canvasView.drawSquare(this.goalLocation, 'yellow');
-    this.canvasView.drawText(this.goalLocation, 'white', 'G');
+    this.canvasView.drawSquare(this.puzzle.goalLocation, 'yellow');
+    this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
     // Draw all robots
-    for (const robot of this.robots) {
+    for (const robot of this.puzzle.robots) {
       this.canvasView.drawImage(robot.getLocation(), robot.getImage());
     }
 
-    for (const robot of this.robots) {
-      if (robot.getLocation().equals(this.goalLocation)) {
+    for (const robot of this.puzzle.robots) {
+      if (robot.getLocation().equals(this.puzzle.goalLocation)) {
         this.gameView.incrementNumberOfMoves();
         this.gameView.showVictoryScreen();
         return;
@@ -77,30 +69,28 @@ export default class GameController {
     this.canvasView.clear();
   }
 
-  initializeWalls(horizontalSquares, verticalSquares) {
-    this.walls = [];
+  getBorderWalls(horizontalSquares, verticalSquares) {
+    const borderWalls = [];
     // Make a wall for the top row
     for (let index = 0; index <= horizontalSquares; index++) {
-      this.walls.push(new Coordinate(index, 0));
+      borderWalls.push(new Coordinate(index, 0));
     }
 
     // Make a wall for the bottom row
     for (let index = 0; index <= horizontalSquares; index++) {
-      this.walls.push(new Coordinate(index, verticalSquares));
+      borderWalls.push(new Coordinate(index, verticalSquares));
     }
 
     // Make a wall for the left column
     for (let index = 0; index <= verticalSquares; index++) {
-      this.walls.push(new Coordinate(0, index));
+      borderWalls.push(new Coordinate(0, index));
     }
 
     // Make a wall for the right column
     for (let index = 0; index <= verticalSquares; index++) {
-      this.walls.push(new Coordinate(horizontalSquares, index));
+      borderWalls.push(new Coordinate(horizontalSquares, index));
     }
-
-    // Make it easy to win
-    this.walls.push(new Coordinate(this.goalLocation.getX() + 2, 2));
+    return borderWalls;
   }
 
   /*******************
@@ -108,6 +98,6 @@ export default class GameController {
    *******************/
 
   keyDownCallback(keyCode) {
-    applyKeyCodeToRobot(keyCode, this.robots);
+    applyKeyCodeToRobot(keyCode, this.puzzle.robots);
   }
 }
