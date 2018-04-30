@@ -26,6 +26,10 @@ export function getYellowRobotImage() {
   return document.getElementById('yellow-robot');
 }
 
+export function getRestartButton() {
+  return document.getElementById('restartButton');
+}
+
 export function incrementNumberOfMovesLabel() {
   const numberOfMovesLabel = document.getElementById('numberOfMovesLabel');
   let numberOfMoves = numberOfMovesLabel.innerHTML;

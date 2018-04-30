@@ -1,7 +1,7 @@
 import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
 import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
-import { getRandomPuzzle } from '../puzzles/puzzle-factory.js';
+import { getPuzzle, getRandomPuzzleId } from '../puzzles/puzzle-factory.js';
 import Coordinate from '../model/coordinate.js';
 
 /**
@@ -11,16 +11,28 @@ export default class GameController {
   constructor() {
     this.keyDownCallback = this.keyDownCallback.bind(this);
     const initializeGameCallback = this.initializeGame.bind(this);
-    this.gameView = new GameView(this.keyDownCallback, initializeGameCallback);
+    const initializeGameWithPuzzleIdCallback = this.initializeGameWithPuzzleId.bind(this);
+    this.gameView = new GameView(
+      this.keyDownCallback,
+      initializeGameCallback,
+      initializeGameWithPuzzleIdCallback,
+    );
     this.initializeGame();
   }
 
   initializeGame() {
-    this.puzzle = getRandomPuzzle();
-    const borderWalls = this.getBorderWalls(this.puzzle.board.HORIZONTAL_SQUARES, this.puzzle.board.VERTICAL_SQUARES);
+    this.initializeGameWithPuzzleId(getRandomPuzzleId());
+  }
+
+  initializeGameWithPuzzleId(puzzleId) {
+    this.puzzle = getPuzzle(puzzleId);
+    const borderWalls = this.getBorderWalls(
+      this.puzzle.board.HORIZONTAL_SQUARES,
+      this.puzzle.board.VERTICAL_SQUARES,
+    );
     this.walls = borderWalls.concat(this.puzzle.walls);
     this.createBoard(this.puzzle.board);
-    this.gameView.initializeGame(this.puzzle.minimumNumberOfMoves);
+    this.gameView.initializeGame(this.puzzle.id, this.puzzle.minimumNumberOfMoves);
     this.renderGame();
   }
 

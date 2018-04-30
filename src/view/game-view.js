@@ -1,5 +1,9 @@
-import { getBody, hideOverlay, showOverlay } from './dom-helper.js';
-import { incrementNumberOfMovesLabel, resetNumberOfMovesLabel, setMinimumNumberOfMovesLabel } from './dom-helper.js';
+import { getBody, getRestartButton, hideOverlay, showOverlay } from './dom-helper.js';
+import {
+  incrementNumberOfMovesLabel,
+  resetNumberOfMovesLabel,
+  setMinimumNumberOfMovesLabel,
+} from './dom-helper.js';
 
 const SPACE_BAR_KEYCODE = 32;
 const UP_ARROW_KEYCODE = 38;
@@ -9,13 +13,16 @@ const DOWN_ARROW_KEYCODE = 40;
  * Handles all requests related to the display of the game, not including the canvas
  */
 export default class GameView {
-  constructor(keyDownCallback, initializeGameCallback) {
+  constructor(keyDownCallback, initializeGameCallback, initializeGameWithPuzzleIdCallback) {
     this.keyDownCallback = keyDownCallback;
     this.initializeGameCallback = initializeGameCallback;
+    this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
+    getRestartButton().addEventListener('click', this._handleRestartButtonClicked.bind(this));
   }
 
-  initializeGame(minimumNumberOfMoves) {
+  initializeGame(puzzleId, minimumNumberOfMoves) {
+    this.puzzleId = puzzleId;
     resetNumberOfMovesLabel();
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
   }
@@ -52,5 +59,9 @@ export default class GameView {
     }
 
     this.keyDownCallback(e.keyCode);
+  }
+
+  _handleRestartButtonClicked() {
+    this.initializeGameWithPuzzleIdCallback(this.puzzleId);
   }
 }
