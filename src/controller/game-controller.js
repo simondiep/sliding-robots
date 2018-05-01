@@ -32,7 +32,7 @@ export default class GameController {
     );
     this.walls = borderWalls.concat(this.puzzle.walls);
     this.createBoard(this.puzzle.board);
-    this.gameView.initializeGame(this.puzzle.id, this.puzzle.minimumNumberOfMoves);
+    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves);
     this.renderGame();
   }
 
