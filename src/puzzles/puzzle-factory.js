@@ -32,15 +32,32 @@ const puzzleFactory = {
       VERTICAL_SQUARES: 10,
     },
     robots: [
-      new Robot(new Coordinate(10, 9), 'yellow', getYellowRobotImage()),
+      new Robot(new Coordinate(11, 9), 'yellow', getYellowRobotImage()),
       new Robot(new Coordinate(5, 5), 'blue', getBlueRobotImage()),
       new Robot(new Coordinate(6, 6), 'red', getRedRobotImage()),
       new Robot(new Coordinate(7, 7), 'green', getGreenRobotImage()),
     ],
     goalColor: 'red',
-    goalLocation: new Coordinate(2, 2),
-    walls: [new Coordinate(2, 8), new Coordinate(8, 9)],
-    minimumNumberOfMoves: 5,
+    goalLocation: new Coordinate(9, 3),
+    walls: [new Coordinate(2, 8), new Coordinate(8, 9), new Coordinate(9, 4)],
+    minimumNumberOfMoves: 6,
+  }),
+  3: () => ({
+    board: {
+      SQUARE_SIZE_IN_PIXELS: 50,
+      HORIZONTAL_SQUARES: 20,
+      VERTICAL_SQUARES: 10,
+    },
+    robots: [
+      new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()),
+      new Robot(new Coordinate(2, 1), 'blue', getBlueRobotImage()),
+      new Robot(new Coordinate(3, 1), 'red', getRedRobotImage()),
+      new Robot(new Coordinate(4, 1), 'green', getGreenRobotImage()),
+    ],
+    goalColor: 'green',
+    goalLocation: new Coordinate(12, 4),
+    walls: [],
+    minimumNumberOfMoves: 10,
   }),
 };
 
