@@ -3,6 +3,8 @@ import {
   incrementNumberOfMovesLabel,
   resetNumberOfMovesLabel,
   setMinimumNumberOfMovesLabel,
+  swapRobotControlsToRedGreen,
+  swapRobotControlsToYellowBlue,
 } from './dom-helper.js';
 
 const SPACE_BAR_KEYCODE = 32;
@@ -13,18 +15,27 @@ const DOWN_ARROW_KEYCODE = 40;
  * Handles all requests related to the display of the game, not including the canvas
  */
 export default class GameView {
-  constructor(keyDownCallback, initializeGameCallback, initializeGameWithPuzzleIdCallback) {
+  constructor(
+    keyDownCallback,
+    initializeGameCallback,
+    initializeGameWithPuzzleIdCallback,
+    swapControlsCallback,
+  ) {
     this.keyDownCallback = keyDownCallback;
     this.initializeGameCallback = initializeGameCallback;
     this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
+    this.swapControlsCallback = swapControlsCallback;
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
     getRestartButton().addEventListener('click', this._handleRestartButtonClicked.bind(this));
   }
 
-  initializeGame(puzzleId, minimumNumberOfMoves) {
+  initializeGame(puzzleId, minimumNumberOfMoves, activeRobots) {
     this.puzzleId = puzzleId;
+    this.activeRobots = activeRobots;
+    this.hideVictoryScreen();
     resetNumberOfMovesLabel();
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
+    swapRobotControlsToYellowBlue();
   }
 
   incrementNumberOfMoves() {
@@ -33,10 +44,22 @@ export default class GameView {
 
   hideVictoryScreen() {
     hideOverlay();
+    this.overlayVisible = false;
   }
 
   showVictoryScreen() {
     showOverlay();
+    this.overlayVisible = true;
+  }
+
+  _swapRobotControls() {
+    if (this.activeRobots === 'yellowBlue') {
+      swapRobotControlsToRedGreen();
+      this.activeRobots = 'redGreen';
+    } else {
+      swapRobotControlsToYellowBlue();
+      this.activeRobots = 'yellowBlue';
+    }
   }
 
   /*******************
@@ -44,11 +67,6 @@ export default class GameView {
    *******************/
 
   _handleKeyDown(e) {
-    if (e.keyCode === SPACE_BAR_KEYCODE) {
-      this.hideVictoryScreen();
-      this.initializeGameCallback();
-    }
-
     // Prevent keyboard scrolling default behavior
     if (
       e.keyCode === UP_ARROW_KEYCODE ||
@@ -56,6 +74,17 @@ export default class GameView {
       (e.keyCode === SPACE_BAR_KEYCODE && e.target === getBody())
     ) {
       e.preventDefault();
+    }
+
+    if (e.keyCode === SPACE_BAR_KEYCODE) {
+      if (this.overlayVisible) {
+        this.hideVictoryScreen();
+        this.initializeGameCallback();
+        return;
+      }
+      this._swapRobotControls();
+      this.swapControlsCallback();
+      return;
     }
 
     this.keyDownCallback(e.keyCode);

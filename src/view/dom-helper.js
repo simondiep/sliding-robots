@@ -22,6 +22,14 @@ export function getBlueRobotImage() {
   return document.getElementById('blue-robot');
 }
 
+export function getGreenRobotImage() {
+  return document.getElementById('green-robot');
+}
+
+export function getRedRobotImage() {
+  return document.getElementById('red-robot');
+}
+
 export function getYellowRobotImage() {
   return document.getElementById('yellow-robot');
 }
@@ -50,4 +58,14 @@ export function setMinimumNumberOfMovesLabel(moves) {
 
 export function showOverlay() {
   document.getElementById('overlay').style.display = 'block';
+}
+
+export function swapRobotControlsToRedGreen() {
+  document.getElementById('wasd-yellow-blue').style.display = 'none';
+  document.getElementById('wasd-red-green').style.display = 'block';
+}
+
+export function swapRobotControlsToYellowBlue() {
+  document.getElementById('wasd-red-green').style.display = 'none';
+  document.getElementById('wasd-yellow-blue').style.display = 'block';
 }

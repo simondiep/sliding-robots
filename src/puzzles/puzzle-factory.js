@@ -1,6 +1,11 @@
 import Coordinate from '../model/coordinate.js';
 import Robot from '../model/robot.js';
-import { getBlueRobotImage, getYellowRobotImage } from '../view/dom-helper.js';
+import {
+  getBlueRobotImage,
+  getGreenRobotImage,
+  getRedRobotImage,
+  getYellowRobotImage,
+} from '../view/dom-helper.js';
 
 const puzzleFactory = {
   1: () => ({
@@ -12,7 +17,10 @@ const puzzleFactory = {
     robots: [
       new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()),
       new Robot(new Coordinate(2, 2), 'blue', getBlueRobotImage()),
+      new Robot(new Coordinate(6, 6), 'red', getRedRobotImage()),
+      new Robot(new Coordinate(7, 7), 'green', getGreenRobotImage()),
     ],
+    goalColor: 'yellow',
     goalLocation: new Coordinate(3, 3),
     walls: [new Coordinate(5, 2), new Coordinate(8, 9)],
     minimumNumberOfMoves: 4,
@@ -26,7 +34,10 @@ const puzzleFactory = {
     robots: [
       new Robot(new Coordinate(10, 9), 'yellow', getYellowRobotImage()),
       new Robot(new Coordinate(5, 5), 'blue', getBlueRobotImage()),
+      new Robot(new Coordinate(6, 6), 'red', getRedRobotImage()),
+      new Robot(new Coordinate(7, 7), 'green', getGreenRobotImage()),
     ],
+    goalColor: 'red',
     goalLocation: new Coordinate(2, 2),
     walls: [new Coordinate(2, 8), new Coordinate(8, 9)],
     minimumNumberOfMoves: 5,

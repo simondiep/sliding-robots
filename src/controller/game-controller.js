@@ -9,13 +9,15 @@ import Coordinate from '../model/coordinate.js';
  */
 export default class GameController {
   constructor() {
-    this.keyDownCallback = this.keyDownCallback.bind(this);
+    const keyDownCallback = this.keyDownCallback.bind(this);
     const initializeGameCallback = this.initializeGame.bind(this);
     const initializeGameWithPuzzleIdCallback = this.initializeGameWithPuzzleId.bind(this);
+    const swapControlsCallback = this.swapControlsCallback.bind(this);
     this.gameView = new GameView(
-      this.keyDownCallback,
+      keyDownCallback,
       initializeGameCallback,
       initializeGameWithPuzzleIdCallback,
+      swapControlsCallback,
     );
     this.initializeGame();
   }
@@ -25,6 +27,7 @@ export default class GameController {
   }
 
   initializeGameWithPuzzleId(puzzleId) {
+    this.activeRobots = 'yellowBlue';
     this.puzzle = getPuzzle(puzzleId);
     const borderWalls = this.getBorderWalls(
       this.puzzle.board.HORIZONTAL_SQUARES,
@@ -32,7 +35,7 @@ export default class GameController {
     );
     this.walls = borderWalls.concat(this.puzzle.walls);
     this.createBoard(this.puzzle.board);
-    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves);
+    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobots);
     this.renderGame();
   }
 
@@ -50,7 +53,7 @@ export default class GameController {
     this.canvasView.clear();
 
     this.canvasView.drawSquares(this.walls, 'gray');
-    this.canvasView.drawSquare(this.puzzle.goalLocation, 'yellow');
+    this.canvasView.drawSquare(this.puzzle.goalLocation, this.puzzle.goalColor);
     this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
     // Draw all robots
     for (const robot of this.puzzle.robots) {
@@ -58,7 +61,10 @@ export default class GameController {
     }
 
     for (const robot of this.puzzle.robots) {
-      if (robot.getLocation().equals(this.puzzle.goalLocation)) {
+      if (
+        this.puzzle.goalColor === robot.getColor() &&
+        robot.getLocation().equals(this.puzzle.goalLocation)
+      ) {
         this.gameView.incrementNumberOfMoves();
         this.gameView.showVictoryScreen();
         return;
@@ -110,6 +116,14 @@ export default class GameController {
    *******************/
 
   keyDownCallback(keyCode) {
-    applyKeyCodeToRobot(keyCode, this.puzzle.robots);
+    applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobots);
+  }
+
+  swapControlsCallback() {
+    if (this.activeRobots === 'yellowBlue') {
+      this.activeRobots = 'redGreen';
+    } else {
+      this.activeRobots = 'yellowBlue';
+    }
   }
 }
