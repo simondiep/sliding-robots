@@ -78,9 +78,12 @@ export default class GameController {
     const self = this;
     // Run in a loop for a second after the last move
     if (Date.now() - self.lastMoveTime < 1000) {
+      this.rendering = true;
       setTimeout(() => {
         requestAnimationFrame(self.renderGame.bind(self));
       }, 1000 / 30); // 30 FPS
+    } else {
+      this.rendering = false;
     }
   }
 
@@ -125,7 +128,9 @@ export default class GameController {
     const validKey = applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobots);
     if (validKey) {
       this.lastMoveTime = Date.now();
-      this.renderGame();
+      if (!this.rendering) {
+        this.renderGame();
+      }
     }
   }
 
