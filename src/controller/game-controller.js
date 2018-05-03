@@ -36,14 +36,18 @@ export default class GameController {
     this.walls = borderWalls.concat(this.puzzle.walls);
     this.createBoard(this.puzzle.board);
     this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobots);
+    this.lastMoveTime = Date.now();
     this.renderGame();
   }
 
+  // Call this when you have initiated a change that needs to be rendered
+  // Set the lastMoveTime to run in a loop for longer than a second (To save CPU usage)
   renderGame() {
     for (const robot of this.puzzle.robots) {
       // Move the robot and keep track of number of moves
       const previousRobotDirection = robot.getDirection();
       moveRobot(robot, this.walls, this.puzzle.robots);
+
       // TODO Don't count moving into wall as a move
       if (previousRobotDirection && !robot.getDirection()) {
         this.gameView.incrementNumberOfMoves();
@@ -72,10 +76,12 @@ export default class GameController {
     }
 
     const self = this;
-    // Run in a loop
-    setTimeout(() => {
-      requestAnimationFrame(self.renderGame.bind(self));
-    }, 1000 / 30); // 30 FPS
+    // Run in a loop for a second after the last move
+    if (Date.now() - self.lastMoveTime < 1000) {
+      setTimeout(() => {
+        requestAnimationFrame(self.renderGame.bind(self));
+      }, 1000 / 30); // 30 FPS
+    }
   }
 
   createBoard(board) {
@@ -116,7 +122,11 @@ export default class GameController {
    *******************/
 
   keyDownCallback(keyCode) {
-    applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobots);
+    const validKey = applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobots);
+    if (validKey) {
+      this.lastMoveTime = Date.now();
+      this.renderGame();
+    }
   }
 
   swapControlsCallback() {

@@ -16,6 +16,7 @@ const ARROW_KEYCODE_TO_DIRECTION = {
 };
 
 // Only one robot can be moving at a time
+// Return true if keycode was valid
 export function applyKeyCodeToRobot(keyCode, robots, activeRobots) {
   for (const robot of robots) {
     if (robot.getDirection()) {
@@ -28,20 +29,24 @@ export function applyKeyCodeToRobot(keyCode, robots, activeRobots) {
     if (activeRobots === 'yellowBlue') {
       if (robot.getColor() === 'yellow' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
         robot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
+        return true;
       } else if (
         robot.getColor() === 'blue' &&
         ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)
       ) {
         robot.setDirection(ARROW_KEYCODE_TO_DIRECTION[keyCode]);
+        return true;
       }
     } else if (activeRobots === 'redGreen') {
       if (robot.getColor() === 'red' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
         robot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
+        return true;
       } else if (
         robot.getColor() === 'green' &&
         ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)
       ) {
         robot.setDirection(ARROW_KEYCODE_TO_DIRECTION[keyCode]);
+        return true;
       }
     }
   }

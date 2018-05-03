@@ -10,6 +10,14 @@ Current functionality:
 * Three puzzles
 * Win condition
 
+TODO List
+
+* Display puzzle number
+* New Puzzle button
+* View solution
+* Actual walls instead of blocks
+* High scores - http://www.robotreboot.com/highscore
+
 ## Requirements to Run in development mode
 
 NodeJS 8 or higher
