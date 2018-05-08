@@ -17,6 +17,16 @@ TODO List
 * View solution
 * Actual walls instead of blocks
 * High scores - http://www.robotreboot.com/highscore
+* More intuitive controls
+    * Maybe key selectors (1234?) and wasd
+    * Add robot numbers to robot images
+    * Add goal robot number to goal square
+* Better formatted images
+* Prettier page styling. (lean into making it look like an old arcade game?)
+* Ability to select puzzle
+* Make your own puzzle
+* Moving animations
+    * Front, left, right, and back images for each color
 
 ## Requirements to Run in development mode
 

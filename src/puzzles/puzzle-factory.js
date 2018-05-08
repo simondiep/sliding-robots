@@ -59,6 +59,23 @@ const puzzleFactory = {
     walls: [],
     minimumNumberOfMoves: 10,
   }),
+  4: () => ({
+    board: {
+      SQUARE_SIZE_IN_PIXELS: 50,
+      HORIZONTAL_SQUARES: 20,
+      VERTICAL_SQUARES: 10,
+    },
+    robots: [
+      new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()),
+      new Robot(new Coordinate(2, 1), 'blue', getBlueRobotImage()),
+      new Robot(new Coordinate(3, 1), 'red', getRedRobotImage()),
+      new Robot(new Coordinate(4, 1), 'green', getGreenRobotImage()),
+    ],
+    goalColor: 'red',
+    goalLocation: new Coordinate(2, 3),
+    walls: [new Coordinate(2,2)],
+    minimumNumberOfMoves: 4,
+  }),
 };
 
 // Store last random puzzle
