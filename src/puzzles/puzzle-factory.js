@@ -1,4 +1,5 @@
 import Coordinate from '../model/coordinate.js';
+import WallCoordinate from '../model/wall-coordinate.js';
 import Robot from '../model/robot.js';
 import {
   getBlueRobotImage,
@@ -22,7 +23,10 @@ const puzzleFactory = {
     ],
     goalColor: 'yellow',
     goalLocation: new Coordinate(3, 3),
-    walls: [new Coordinate(5, 2), new Coordinate(8, 9)],
+    walls: [
+      new WallCoordinate(5, 2, { left: true, top: true }),
+      new WallCoordinate(8, 9, { right: true }),
+    ],
     minimumNumberOfMoves: 4,
   }),
   2: () => ({
@@ -39,7 +43,11 @@ const puzzleFactory = {
     ],
     goalColor: 'red',
     goalLocation: new Coordinate(9, 3),
-    walls: [new Coordinate(2, 8), new Coordinate(8, 9), new Coordinate(9, 4)],
+    walls: [
+      new WallCoordinate(2, 8, { bottom: true }),
+      new WallCoordinate(8, 9, { left: true }),
+      new WallCoordinate(9, 4, { right: true }),
+    ],
     minimumNumberOfMoves: 6,
   }),
   3: () => ({
@@ -73,8 +81,12 @@ const puzzleFactory = {
     ],
     goalColor: 'red',
     goalLocation: new Coordinate(2, 3),
-    walls: [new Coordinate(2,2)],
-    minimumNumberOfMoves: 4,
+    walls: [
+      new WallCoordinate(2, 2, { top: true }),
+      new WallCoordinate(3, 2, { top: true }),
+      new WallCoordinate(4, 2, { top: true }),
+    ],
+    minimumNumberOfMoves: 6,
   }),
 };
 
