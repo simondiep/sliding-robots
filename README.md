@@ -1,33 +1,34 @@
 # Sliding Robots
 
-A simple Canvas game where you try to get a robot to a destination.
+A game where you try to get a robot to a destination by colliding with other robots.
 
-Current functionality:
+## Current functionality
 
 * Four moveable robots via WASD and arrow keys
 * Walls
 * Move Counter
-* Three puzzles
+* Multiple puzzles
 * Win condition
 
-TODO List
+## TODO List
 
-* View solution
+* View a solution
 * High scores - http://www.robotreboot.com/highscore
 * More intuitive controls
   * Maybe key selectors (1234?) and wasd
-  * Add robot numbers to robot images
-  * Add goal robot number to goal square
-* Better formatted images
-* Prettier page styling. (lean into making it look like an old arcade game?)
-* Ability to select puzzle
+    * Add robot numbers to robot images
+    * Add goal robot number to goal square
+* Ability to select a specific puzzle
 
-## Requirements to Run in development mode
+## Development notes
 
-NodeJS 8 or higher
+This game does not use any libraries or dependencies. You can load it up on your browser as is.
 
-## To run
+Nodejs and live-server are recommended if you want to develop and see live-updates without refreshing your browser.
 
+### To run in dev mode
+
+```
 npm i
-
 npm start
+```
