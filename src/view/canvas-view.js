@@ -14,7 +14,7 @@ export default class CanvasView {
     this.context.globalAlpha = 1;
     this.context.fillRect(0, 0, this.width, this.height);
 
-    this.context.strokeStyle = '#2a2a2a';
+    this.context.strokeStyle = '#7E7E7E';
     this.context.lineWidth = 1;
     for (
       let i = this.squareSizeInPixels / 2;
