@@ -43,12 +43,6 @@ export default class CanvasView {
     );
   }
 
-  drawSquares(coordinates, color) {
-    for (const coordinate of coordinates) {
-      this.drawSquare(coordinate, color);
-    }
-  }
-
   drawSquare(coordinate, color) {
     const x = coordinate.x * this.squareSizeInPixels;
     const y = coordinate.y * this.squareSizeInPixels;
@@ -87,5 +81,42 @@ export default class CanvasView {
     this.context.strokeText(text, x, y);
     this.context.fillText(text, x, y);
     this.context.restore();
+  }
+
+  drawWalls(wallCoordinates, color) {
+    this.context.strokeStyle = color;
+    this.context.lineWidth = this.squareSizeInPixels / 5;
+    for (const wallCoordinate of wallCoordinates) {
+      const x = wallCoordinate.x * this.squareSizeInPixels;
+      const y = wallCoordinate.y * this.squareSizeInPixels;
+      if (wallCoordinate.hasWallOnTop()) {
+        this.context.beginPath();
+        this.context.moveTo(x - this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+        this.context.lineTo(x + this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+        this.context.closePath();
+        this.context.stroke();
+      }
+      if (wallCoordinate.hasWallOnRight()) {
+        this.context.beginPath();
+        this.context.moveTo(x + this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+        this.context.lineTo(x + this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+        this.context.closePath();
+        this.context.stroke();
+      }
+      if (wallCoordinate.hasWallOnBottom()) {
+        this.context.beginPath();
+        this.context.moveTo(x + this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+        this.context.lineTo(x - this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+        this.context.closePath();
+        this.context.stroke();
+      }
+      if (wallCoordinate.hasWallOnLeft()) {
+        this.context.beginPath();
+        this.context.moveTo(x - this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+        this.context.lineTo(x - this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+        this.context.closePath();
+        this.context.stroke();
+      }
+    }
   }
 }

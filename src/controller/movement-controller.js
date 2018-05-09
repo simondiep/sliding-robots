@@ -1,5 +1,5 @@
 import Coordinate from '../model/coordinate.js';
-import Direction from '../model/direction.js';
+import Direction, { isDown, isLeft, isRight, isUp } from '../model/direction.js';
 
 const WASD_KEYCODE_TO_DIRECTION = {
   87: Direction.UP,
@@ -65,8 +65,39 @@ export function moveRobot(robot, wallLocations, robots) {
       return rob.getColor() !== robot.color && rob.getLocation().equals(newLocation);
     });
 
-    const overlapsWall = wallLocations.some(function(loc) {
-      return loc.equals(newLocation);
+    const overlapsWall = wallLocations.some(function(wallLocation) {
+      if (wallLocation.equals(newLocation)) {
+        if (isUp(robot.getDirection()) && wallLocation.hasWallOnBottom()) {
+          return true;
+        }
+        if (isRight(robot.getDirection()) && wallLocation.hasWallOnLeft()) {
+          return true;
+        }
+        if (isDown(robot.getDirection()) && wallLocation.hasWallOnTop()) {
+          return true;
+        }
+        if (isLeft(robot.getDirection()) && wallLocation.hasWallOnRight()) {
+          return true;
+        }
+        return false;
+      }
+
+      if (wallLocation.equals(robot.getLocation())) {
+        if (isUp(robot.getDirection()) && wallLocation.hasWallOnTop()) {
+          return true;
+        }
+        if (isRight(robot.getDirection()) && wallLocation.hasWallOnRight()) {
+          return true;
+        }
+        if (isDown(robot.getDirection()) && wallLocation.hasWallOnBottom()) {
+          return true;
+        }
+        if (isLeft(robot.getDirection()) && wallLocation.hasWallOnLeft()) {
+          return true;
+        }
+        return false;
+      }
+      return false;
     });
 
     if (overlapsAnotherRobot || overlapsWall) {

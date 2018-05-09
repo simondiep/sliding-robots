@@ -56,6 +56,10 @@ export function setMinimumNumberOfMovesLabel(moves) {
   document.getElementById('minimumNumberOfMovesLabel').innerHTML = moves;
 }
 
+export function showApp() {
+  document.getElementById('app').style.display = 'table';
+}
+
 export function showOverlay() {
   document.getElementById('overlay').style.display = 'block';
 }

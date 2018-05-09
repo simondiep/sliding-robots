@@ -2,7 +2,7 @@ import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
 import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
 import { getPuzzle, getRandomPuzzleId } from '../puzzles/puzzle-factory.js';
-import Coordinate from '../model/coordinate.js';
+import WallCoordinate from '../model/wall-coordinate.js';
 
 /**
  * Controls all game logic
@@ -56,7 +56,7 @@ export default class GameController {
 
     this.canvasView.clear();
 
-    this.canvasView.drawSquares(this.walls, 'gray');
+    this.canvasView.drawWalls(this.walls, 'gray');
     this.canvasView.drawSquare(this.puzzle.goalLocation, this.puzzle.goalColor);
     this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
     // Draw all robots
@@ -100,22 +100,22 @@ export default class GameController {
     const borderWalls = [];
     // Make a wall for the top row
     for (let index = 0; index <= horizontalSquares; index++) {
-      borderWalls.push(new Coordinate(index, 0));
+      borderWalls.push(new WallCoordinate(index, 0, { bottom: true }));
     }
 
     // Make a wall for the bottom row
     for (let index = 0; index <= horizontalSquares; index++) {
-      borderWalls.push(new Coordinate(index, verticalSquares));
+      borderWalls.push(new WallCoordinate(index, verticalSquares, { top: true }));
     }
 
     // Make a wall for the left column
     for (let index = 0; index <= verticalSquares; index++) {
-      borderWalls.push(new Coordinate(0, index));
+      borderWalls.push(new WallCoordinate(0, index, { right: true }));
     }
 
     // Make a wall for the right column
     for (let index = 0; index <= verticalSquares; index++) {
-      borderWalls.push(new Coordinate(horizontalSquares, index));
+      borderWalls.push(new WallCoordinate(horizontalSquares, index, { left: true }));
     }
     return borderWalls;
   }

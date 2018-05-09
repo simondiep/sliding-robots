@@ -3,6 +3,7 @@ import {
   incrementNumberOfMovesLabel,
   resetNumberOfMovesLabel,
   setMinimumNumberOfMovesLabel,
+  showApp,
   swapRobotControlsToRedGreen,
   swapRobotControlsToYellowBlue,
 } from './dom-helper.js';
@@ -36,6 +37,7 @@ export default class GameView {
     resetNumberOfMovesLabel();
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
     swapRobotControlsToYellowBlue();
+    showApp();
   }
 
   incrementNumberOfMoves() {
