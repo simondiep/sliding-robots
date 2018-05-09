@@ -29,7 +29,7 @@
       display: table;
       margin: 0 auto;
     }
-    #restartButton {
+    button {
       font-size: 18px;
     }
     body {
@@ -58,15 +58,20 @@
   <div id="app" style="display:none;">
     <div class="header">
       <div>
+        <label>Puzzle : </label>
+        <label id="puzzleLabel"></label>
+      </div>
+      <div>
         <label>Number of Moves : </label>
         <label id="numberOfMovesLabel">0</label>
       </div>
       <div>
-        <label>Minimum Number of Moves to solve : </label>
+        <label>Min. number of moves : </label>
         <label id="minimumNumberOfMovesLabel"></label>
       </div>
       <div>
         <button id="restartButton">Restart</button>
+        <button id="newPuzzleButton">New Puzzle</button>
       </div>
     </div>
     <div id="game-board"></div>

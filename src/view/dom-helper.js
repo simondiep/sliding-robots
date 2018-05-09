@@ -27,6 +27,10 @@ export function getRobotImages(color) {
   };
 }
 
+export function getNewPuzzleButton() {
+  return document.getElementById('newPuzzleButton');
+}
+
 export function getRestartButton() {
   return document.getElementById('restartButton');
 }
@@ -47,6 +51,10 @@ export function hideOverlay() {
 
 export function setMinimumNumberOfMovesLabel(moves) {
   document.getElementById('minimumNumberOfMovesLabel').innerHTML = moves;
+}
+
+export function setPuzzleNumber(puzzleNumber) {
+  document.getElementById('puzzleLabel').innerHTML = puzzleNumber;
 }
 
 export function showApp() {

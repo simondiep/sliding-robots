@@ -12,8 +12,6 @@ Current functionality:
 
 TODO List
 
-* Display puzzle number
-* New Puzzle button
 * View solution
 * High scores - http://www.robotreboot.com/highscore
 * More intuitive controls
@@ -23,8 +21,6 @@ TODO List
 * Better formatted images
 * Prettier page styling. (lean into making it look like an old arcade game?)
 * Ability to select puzzle
-* Moving animations
-    * Make use of the directional images
 
 ## Requirements to Run in development mode
 

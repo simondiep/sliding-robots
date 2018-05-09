@@ -1,8 +1,15 @@
-import { getBody, getRestartButton, hideOverlay, showOverlay } from './dom-helper.js';
+import {
+  getBody,
+  getNewPuzzleButton,
+  getRestartButton,
+  hideOverlay,
+  showOverlay,
+} from './dom-helper.js';
 import {
   incrementNumberOfMovesLabel,
   resetNumberOfMovesLabel,
   setMinimumNumberOfMovesLabel,
+  setPuzzleNumber,
   showApp,
   swapRobotControlsToRedGreen,
   swapRobotControlsToYellowBlue,
@@ -27,6 +34,7 @@ export default class GameView {
     this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
     this.swapControlsCallback = swapControlsCallback;
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
+    getNewPuzzleButton().addEventListener('click', this.initializeGameCallback);
     getRestartButton().addEventListener('click', this._handleRestartButtonClicked.bind(this));
   }
 
@@ -36,6 +44,7 @@ export default class GameView {
     this.hideVictoryScreen();
     resetNumberOfMovesLabel();
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
+    setPuzzleNumber(puzzleId);
     swapRobotControlsToYellowBlue();
     showApp();
   }
