@@ -1,12 +1,6 @@
 import Coordinate from '../model/coordinate.js';
 import WallCoordinate from '../model/wall-coordinate.js';
 import Robot from '../model/robot.js';
-import {
-  getBlueRobotImage,
-  getGreenRobotImage,
-  getRedRobotImage,
-  getYellowRobotImage,
-} from '../view/dom-helper.js';
 
 const puzzleFactory = {
   1: () => ({
@@ -16,10 +10,10 @@ const puzzleFactory = {
       VERTICAL_SQUARES: 10,
     },
     robots: [
-      new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()),
-      new Robot(new Coordinate(2, 2), 'blue', getBlueRobotImage()),
-      new Robot(new Coordinate(6, 6), 'red', getRedRobotImage()),
-      new Robot(new Coordinate(7, 7), 'green', getGreenRobotImage()),
+      new Robot(new Coordinate(1, 1), 'yellow'),
+      new Robot(new Coordinate(2, 2), 'blue'),
+      new Robot(new Coordinate(6, 6), 'red'),
+      new Robot(new Coordinate(7, 7), 'green'),
     ],
     goalColor: 'yellow',
     goalLocation: new Coordinate(3, 3),
@@ -36,10 +30,10 @@ const puzzleFactory = {
       VERTICAL_SQUARES: 10,
     },
     robots: [
-      new Robot(new Coordinate(11, 9), 'yellow', getYellowRobotImage()),
-      new Robot(new Coordinate(5, 5), 'blue', getBlueRobotImage()),
-      new Robot(new Coordinate(6, 6), 'red', getRedRobotImage()),
-      new Robot(new Coordinate(7, 7), 'green', getGreenRobotImage()),
+      new Robot(new Coordinate(11, 9), 'yellow'),
+      new Robot(new Coordinate(5, 5), 'blue'),
+      new Robot(new Coordinate(6, 6), 'red'),
+      new Robot(new Coordinate(7, 7), 'green'),
     ],
     goalColor: 'red',
     goalLocation: new Coordinate(9, 3),
@@ -57,10 +51,10 @@ const puzzleFactory = {
       VERTICAL_SQUARES: 10,
     },
     robots: [
-      new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()),
-      new Robot(new Coordinate(2, 1), 'blue', getBlueRobotImage()),
-      new Robot(new Coordinate(3, 1), 'red', getRedRobotImage()),
-      new Robot(new Coordinate(4, 1), 'green', getGreenRobotImage()),
+      new Robot(new Coordinate(1, 1), 'yellow'),
+      new Robot(new Coordinate(2, 1), 'blue'),
+      new Robot(new Coordinate(3, 1), 'red'),
+      new Robot(new Coordinate(4, 1), 'green'),
     ],
     goalColor: 'green',
     goalLocation: new Coordinate(12, 4),
@@ -74,10 +68,10 @@ const puzzleFactory = {
       VERTICAL_SQUARES: 10,
     },
     robots: [
-      new Robot(new Coordinate(1, 1), 'yellow', getYellowRobotImage()),
-      new Robot(new Coordinate(2, 1), 'blue', getBlueRobotImage()),
-      new Robot(new Coordinate(3, 1), 'red', getRedRobotImage()),
-      new Robot(new Coordinate(4, 1), 'green', getGreenRobotImage()),
+      new Robot(new Coordinate(1, 1), 'yellow'),
+      new Robot(new Coordinate(2, 1), 'blue'),
+      new Robot(new Coordinate(3, 1), 'red'),
+      new Robot(new Coordinate(4, 1), 'green'),
     ],
     goalColor: 'red',
     goalLocation: new Coordinate(2, 3),

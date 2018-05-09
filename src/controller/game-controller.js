@@ -77,6 +77,7 @@ export default class GameController {
 
     const self = this;
     // Run in a loop for a second after the last move
+    // Make sure you can cross the entire screen within this time and fps combo
     if (Date.now() - self.lastMoveTime < 1000) {
       this.rendering = true;
       setTimeout(() => {

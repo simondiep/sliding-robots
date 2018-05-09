@@ -1,8 +1,11 @@
+import { getRobotImages } from '../view/dom-helper.js';
+import { isDown, isLeft, isRight, isUp } from './direction.js';
+
 export default class Robot {
   constructor(location, color, image) {
     this.location = location;
     this.color = color;
-    this.image = image;
+    this.images = getRobotImages(color);
     this.direction = null;
   }
 
@@ -11,7 +14,22 @@ export default class Robot {
   }
 
   getImage() {
-    return this.image;
+    if (this.direction === null) {
+      return this.images.front;
+    }
+    if (isDown(this.direction)) {
+      return this.images.front;
+    }
+    if (isUp(this.direction)) {
+      return this.images.back;
+    }
+    if (isLeft(this.direction)) {
+      return this.images.left;
+    }
+    if (isRight(this.direction)) {
+      return this.images.right;
+    }
+    return this.images.front;
   }
 
   getLocation() {

@@ -18,20 +18,13 @@ export function getGameBoardDiv() {
   return document.getElementById('game-board');
 }
 
-export function getBlueRobotImage() {
-  return document.getElementById('blue-robot');
-}
-
-export function getGreenRobotImage() {
-  return document.getElementById('green-robot');
-}
-
-export function getRedRobotImage() {
-  return document.getElementById('red-robot');
-}
-
-export function getYellowRobotImage() {
-  return document.getElementById('yellow-robot');
+export function getRobotImages(color) {
+  return {
+    front: document.getElementById(`${color}-robot-front`),
+    back: document.getElementById(`${color}-robot-back`),
+    left: document.getElementById(`${color}-robot-left`),
+    right: document.getElementById(`${color}-robot-right`),
+  };
 }
 
 export function getRestartButton() {
