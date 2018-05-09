@@ -2,15 +2,9 @@
 
 A game where you try to get a robot to a destination by colliding with other robots.
 
-## Current functionality
+Try it out [here](https://simondiep.github.io/sliding-robots/)
 
-* Four moveable robots via WASD and arrow keys
-* Walls
-* Move Counter
-* Multiple puzzles
-* Win condition
-
-## TODO List
+## Upcoming Ideas List
 
 * View a solution
 * High scores - http://www.robotreboot.com/highscore
@@ -18,7 +12,11 @@ A game where you try to get a robot to a destination by colliding with other rob
   * Maybe key selectors (1234?) and wasd
     * Add robot numbers to robot images
     * Add goal robot number to goal square
-* Ability to select a specific puzzle
+* Ability to select a specific premade puzzle
+* More satisfying win screen
+* Sound effects
+* Procedurally generated puzzles based on seed
+* Multiplayer
 
 ## Development notes
 
