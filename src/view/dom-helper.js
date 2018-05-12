@@ -59,14 +59,20 @@ export function muteBackgroundMusic() {
 }
 
 export function playBackgroundMusic(volume) {
-  const music = document.getElementById('bg-music');
-  music.volume = volume;
+  const music = document.getElementById('music-background');
+  music.volume = volume/2;
   music.play();
 }
 
 export function playThudSound(volume) {
-  const music = document.getElementById('thud-sound');
-  music.volume = volume * 2;
+  const music = document.getElementById('sound-thud');
+  music.volume = volume;
+  music.play();
+}
+
+export function playWinSound(volume) {
+  const music = document.getElementById('sound-win');
+  music.volume = volume;
   music.play();
 }
 

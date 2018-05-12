@@ -8,6 +8,7 @@ import {
   muteBackgroundMusic,
   playBackgroundMusic,
   playThudSound,
+  playWinSound,
   resetNumberOfMovesLabel,
   setMinimumNumberOfMovesLabel,
   setPuzzleNumber,
@@ -32,7 +33,7 @@ export default class GameView {
     initializeGameWithPuzzleIdCallback,
     swapControlsCallback,
   ) {
-    this.volume = 0.05;
+    this.volume = 0.1;
     this.keyDownCallback = keyDownCallback;
     this.initializeGameCallback = initializeGameCallback;
     this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
@@ -65,6 +66,7 @@ export default class GameView {
   }
 
   showVictoryScreen() {
+    playWinSound(this.volume);
     showOverlay();
     this.overlayVisible = true;
   }

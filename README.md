@@ -16,7 +16,8 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 * More satisfying win screen
 * Sound effects
 * Procedurally generated puzzles based on seed
-* Multiplayer
+* Display previous commands
+* More challenging puzzles
 
 ## Development notes
 
