@@ -7,6 +7,7 @@ import {
   incrementNumberOfMovesLabel,
   muteBackgroundMusic,
   playBackgroundMusic,
+  playThudSound,
   resetNumberOfMovesLabel,
   setMinimumNumberOfMovesLabel,
   setPuzzleNumber,
@@ -31,12 +32,13 @@ export default class GameView {
     initializeGameWithPuzzleIdCallback,
     swapControlsCallback,
   ) {
+    this.volume = 0.05;
     this.keyDownCallback = keyDownCallback;
     this.initializeGameCallback = initializeGameCallback;
     this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
     this.swapControlsCallback = swapControlsCallback;
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
-    getMuteButton().addEventListener('click', muteBackgroundMusic);
+    getMuteButton().addEventListener('click', this._handleMuteButtonClicked.bind(this));
     getNewPuzzleButton().addEventListener('click', this.initializeGameCallback);
     getRestartButton().addEventListener('click', this._handleRestartButtonClicked.bind(this));
     showApp();
@@ -52,7 +54,8 @@ export default class GameView {
     swapRobotControlsToYellowBlue();
   }
 
-  incrementNumberOfMoves() {
+  robotHasStoppedMoving() {
+    playThudSound(this.volume);
     incrementNumberOfMovesLabel();
   }
 
@@ -94,7 +97,7 @@ export default class GameView {
     if (e.keyCode === SPACE_BAR_KEYCODE) {
       // Start First Game
       if (this.puzzleId === undefined) {
-        playBackgroundMusic();
+        playBackgroundMusic(this.volume);
         this.initializeGameCallback();
         showHeaderBar();
         return;
@@ -110,6 +113,11 @@ export default class GameView {
     }
 
     this.keyDownCallback(e.keyCode);
+  }
+
+  _handleMuteButtonClicked() {
+    this.volume = 0;
+    muteBackgroundMusic();
   }
 
   _handleRestartButtonClicked() {

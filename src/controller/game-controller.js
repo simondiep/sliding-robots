@@ -24,7 +24,11 @@ export default class GameController {
       HORIZONTAL_SQUARES: 20,
       VERTICAL_SQUARES: 10,
     };
-    this.createBoard(initialBoard);
+    this.canvasView = createCanvasView(
+      initialBoard.SQUARE_SIZE_IN_PIXELS,
+      initialBoard.HORIZONTAL_SQUARES,
+      initialBoard.VERTICAL_SQUARES,
+    );
     this.canvasView.showSplashScreen("Sliding Robots", "Press Space to begin");
   }
 
@@ -56,7 +60,7 @@ export default class GameController {
 
       // TODO Don't count moving into wall as a move
       if (previousRobotDirection && !robot.getDirection()) {
-        this.gameView.incrementNumberOfMoves();
+        this.gameView.robotHasStoppedMoving();
       }
     }
 
@@ -75,7 +79,7 @@ export default class GameController {
         this.puzzle.goalColor === robot.getColor() &&
         robot.getLocation().equals(this.puzzle.goalLocation)
       ) {
-        this.gameView.incrementNumberOfMoves();
+        this.gameView.robotHasStoppedMoving();
         this.gameView.showVictoryScreen();
         return;
       }

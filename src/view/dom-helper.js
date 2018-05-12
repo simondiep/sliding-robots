@@ -58,9 +58,15 @@ export function muteBackgroundMusic() {
   music.pause();
 }
 
-export function playBackgroundMusic() {
+export function playBackgroundMusic(volume) {
   const music = document.getElementById('bg-music');
-  music.volume = 0.05;
+  music.volume = volume;
+  music.play();
+}
+
+export function playThudSound(volume) {
+  const music = document.getElementById('thud-sound');
+  music.volume = volume * 2;
   music.play();
 }
 
