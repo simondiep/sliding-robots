@@ -13,8 +13,8 @@
    height="800"
    id="svg4095"
    version="1.1"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="friendly-robot-in-red.svg">
+   inkscape:version="0.92.0 r15299"
+   sodipodi:docname="front.svg">
   <defs
      id="defs4097" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="148.01439"
-     inkscape:cy="313.53538"
+     inkscape:zoom="0.0625"
+     inkscape:cx="-963.52183"
+     inkscape:cy="4968.5861"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -34,9 +34,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1366"
-     inkscape:window-height="715"
-     inkscape:window-x="-8"
+     inkscape:window-width="1080"
+     inkscape:window-height="1857"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -377,6 +377,16 @@
            d="m 505.28605,775.49204 c 25.5354,18.35464 61.0184,12.97492 79.1686,-12.30732 18.294,-25.25524 12.4568,-60.68822 -13.0506,-79.18632 -25.5074,-18.49848 -61.1624,-13.00302 -79.4838,12.3957 -13.6278,18.84736 -14.0602,44.26962 -1.1504,63.91504 l 47.5174,-30.6497 z"
            id="use4204" />
       </g>
+    </g>
+    <g
+       aria-label="1"
+       transform="translate(176.07106,-171.61257)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:25px;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+       id="flowRoot4539">
+      <path
+         d="m 385.34505,938.50651 h -90.86588 v -17.92969 h 37.1875 V 814.99088 l -34.64193,18.81511 -7.08333,-16.38021 46.04166,-24.23828 h 17.04428 v 127.38932 h 32.3177 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:226.66667175px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path4551" />
     </g>
   </g>
 </svg>
