@@ -2,7 +2,7 @@
  * Handles all requests related to the canvas
  */
 export default class CanvasView {
-  constructor(canvas, squareSizeInPixels, imageUploadCanvas) {
+  constructor(canvas, squareSizeInPixels) {
     this.height = canvas.height;
     this.width = canvas.width;
     this.context = canvas.getContext('2d');
@@ -17,7 +17,7 @@ export default class CanvasView {
     this.context.strokeStyle = '#7E7E7E';
     this.context.lineWidth = 1;
     for (
-      let i = this.squareSizeInPixels / 2;
+      let i = 0;
       i < this.width || i < this.height;
       i += this.squareSizeInPixels
     ) {
@@ -36,8 +36,8 @@ export default class CanvasView {
     const y = coordinate.y * this.squareSizeInPixels;
     this.context.drawImage(
       image,
-      x - this.squareSizeInPixels / 2,
-      y - this.squareSizeInPixels / 2,
+      x,
+      y,
       this.squareSizeInPixels,
       this.squareSizeInPixels,
     );
@@ -48,10 +48,10 @@ export default class CanvasView {
     const y = coordinate.y * this.squareSizeInPixels;
     this.context.fillStyle = color;
     this.context.beginPath();
-    this.context.moveTo(x - this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
-    this.context.lineTo(x + this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
-    this.context.lineTo(x + this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
-    this.context.lineTo(x - this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+    this.context.moveTo(x, y);
+    this.context.lineTo(x + this.squareSizeInPixels, y);
+    this.context.lineTo(x + this.squareSizeInPixels, y + this.squareSizeInPixels);
+    this.context.lineTo(x, y + this.squareSizeInPixels);
     this.context.closePath();
     this.context.fill();
   }
@@ -65,8 +65,8 @@ export default class CanvasView {
 
     const textWidth = this.context.measureText(text).width;
     const textHeight = 24;
-    let x = location.x * this.squareSizeInPixels - textWidth / 2;
-    let y = location.y * this.squareSizeInPixels + textHeight / 2;
+    let x = location.x * this.squareSizeInPixels + this.squareSizeInPixels/2 - textWidth / 2;
+    let y = location.y * this.squareSizeInPixels + this.squareSizeInPixels/2 + textHeight / 2;
     if (x < 0) {
       x = 0;
     } else if (x > this.width - textWidth) {
@@ -87,33 +87,33 @@ export default class CanvasView {
     this.context.strokeStyle = color;
     this.context.lineWidth = this.squareSizeInPixels / 5;
     for (const wallCoordinate of wallCoordinates) {
-      const x = wallCoordinate.x * this.squareSizeInPixels;
-      const y = wallCoordinate.y * this.squareSizeInPixels;
+      let x = wallCoordinate.x * this.squareSizeInPixels;
+      let y = wallCoordinate.y * this.squareSizeInPixels;
       if (wallCoordinate.hasWallOnTop()) {
         this.context.beginPath();
-        this.context.moveTo(x - this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
-        this.context.lineTo(x + this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+        this.context.moveTo(x, y);
+        this.context.lineTo(x + this.squareSizeInPixels, y);
         this.context.closePath();
         this.context.stroke();
       }
       if (wallCoordinate.hasWallOnRight()) {
         this.context.beginPath();
-        this.context.moveTo(x + this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
-        this.context.lineTo(x + this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+        this.context.moveTo(x + this.squareSizeInPixels, y);
+        this.context.lineTo(x + this.squareSizeInPixels, y + this.squareSizeInPixels);
         this.context.closePath();
         this.context.stroke();
       }
       if (wallCoordinate.hasWallOnBottom()) {
         this.context.beginPath();
-        this.context.moveTo(x + this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
-        this.context.lineTo(x - this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+        this.context.moveTo(x, y + this.squareSizeInPixels);
+        this.context.lineTo(x + this.squareSizeInPixels, y + this.squareSizeInPixels);
         this.context.closePath();
         this.context.stroke();
       }
       if (wallCoordinate.hasWallOnLeft()) {
         this.context.beginPath();
-        this.context.moveTo(x - this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
-        this.context.lineTo(x - this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+        this.context.moveTo(x, y + this.squareSizeInPixels);
+        this.context.lineTo(x, y);
         this.context.closePath();
         this.context.stroke();
       }

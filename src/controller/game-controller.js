@@ -100,23 +100,23 @@ export default class GameController {
   getBorderWalls(horizontalSquares, verticalSquares) {
     const borderWalls = [];
     // Make a wall for the top row
-    for (let index = 0; index <= horizontalSquares; index++) {
-      borderWalls.push(new WallCoordinate(index, 0, { bottom: true }));
+    for (let index = 0; index < horizontalSquares; index++) {
+      borderWalls.push(new WallCoordinate(index, 0, { top: true }));
     }
 
     // Make a wall for the bottom row
-    for (let index = 0; index <= horizontalSquares; index++) {
-      borderWalls.push(new WallCoordinate(index, verticalSquares, { top: true }));
+    for (let index = 0; index < horizontalSquares; index++) {
+      borderWalls.push(new WallCoordinate(index, verticalSquares - 1, { bottom: true }));
     }
 
     // Make a wall for the left column
-    for (let index = 0; index <= verticalSquares; index++) {
-      borderWalls.push(new WallCoordinate(0, index, { right: true }));
+    for (let index = 0; index < verticalSquares; index++) {
+      borderWalls.push(new WallCoordinate(0, index, { left: true }));
     }
 
     // Make a wall for the right column
-    for (let index = 0; index <= verticalSquares; index++) {
-      borderWalls.push(new WallCoordinate(horizontalSquares, index, { left: true }));
+    for (let index = 0; index < verticalSquares; index++) {
+      borderWalls.push(new WallCoordinate(horizontalSquares - 1, index, { right: true }));
     }
     return borderWalls;
   }
