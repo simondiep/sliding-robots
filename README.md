@@ -7,14 +7,12 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 ## Upcoming Ideas List
 
 * View a solution
-* High scores - http://www.robotreboot.com/highscore
+* High scores similar to http://www.robotreboot.com/highscore
 * More intuitive controls
-  * Maybe key selectors (1234?) and wasd
+  * Key selectors (1234) and wasd
     * Add robot numbers to robot images
     * Add goal robot number to goal square
 * Ability to select a specific premade puzzle
-* More satisfying win screen
-* Sound effects
 * Procedurally generated puzzles based on seed
 * Display previous commands
 * More challenging puzzles
@@ -32,7 +30,8 @@ npm i
 npm start
 ```
 
-# Credits
+## Credits
 
 Awesome background music from https://github.com/OpenSourceMusic/Cleansing-Rain
+
 Fun robot image from https://openclipart.org/user-detail/anarres
