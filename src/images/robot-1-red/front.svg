@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.0625"
-     inkscape:cx="-963.52183"
-     inkscape:cy="4968.5861"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="184.2622"
+     inkscape:cy="2.4974416"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -34,10 +34,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1080"
-     inkscape:window-height="1857"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="317"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata4100">
@@ -380,13 +380,14 @@
     </g>
     <g
        aria-label="1"
-       transform="translate(176.07106,-171.61257)"
+       transform="matrix(1.2420846,0,0,1.2420846,94.419237,-353.2208)"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:25px;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
        id="flowRoot4539">
       <path
          d="m 385.34505,938.50651 h -90.86588 v -17.92969 h 37.1875 V 814.99088 l -34.64193,18.81511 -7.08333,-16.38021 46.04166,-24.23828 h 17.04428 v 127.38932 h 32.3177 z"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:226.66667175px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-         id="path4551" />
+         id="path4551"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>

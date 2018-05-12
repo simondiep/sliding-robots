@@ -25,7 +25,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="367.01439"
+     inkscape:cx="426.01439"
      inkscape:cy="153.53538"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -36,8 +36,8 @@
      fit-margin-bottom="0"
      inkscape:window-width="702"
      inkscape:window-height="941"
-     inkscape:window-x="491"
-     inkscape:window-y="337"
+     inkscape:window-x="1118"
+     inkscape:window-y="350"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4100">
@@ -380,13 +380,14 @@
     </g>
     <g
        aria-label="2"
-       transform="translate(174.79827,-171.61257)"
+       transform="matrix(1.2311475,0,0,1.2311475,96.638361,-342.92887)"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:25px;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
        id="flowRoot4539">
       <path
          d="m 386.5625,938.50651 h -95.29297 v -17.26562 l 37.40886,-37.1875 q 9.18619,-9.07553 14.9414,-15.71615 5.75521,-6.64063 8.96485,-12.0638 3.20963,-5.53386 4.3164,-10.40365 1.10677,-4.86979 1.10677,-10.51432 0,-5.3125 -1.4388,-10.07162 -1.4388,-4.86979 -4.42708,-8.52213 -2.98828,-3.65235 -7.7474,-5.75521 -4.75911,-2.10287 -11.39974,-2.10287 -9.1862,0 -16.71224,4.09506 -7.52604,4.09505 -13.83463,10.625 l -10.625,-12.72787 q 8.1901,-8.63281 18.8151,-13.83463 10.73568,-5.20183 24.90235,-5.20183 9.6289,0 17.48698,2.87761 7.96875,2.8776 13.72395,8.30078 5.75521,5.42318 8.85417,13.28125 3.20964,7.85807 3.20964,17.70833 0,8.30078 -2.21355,15.38412 -2.21354,7.08333 -6.7513,14.16666 -4.42708,6.97266 -11.28906,14.4987 -6.7513,7.52605 -16.04818,16.49089 l -26.23047,25.56641 h 70.27995 z"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:226.66667175px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-         id="path4551" />
+         id="path4551"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>
