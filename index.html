@@ -37,7 +37,7 @@
         font-family: consolas;
         color: #8E328E;
     }
-    .header {
+    #header {
       color: #B7B841;
       font-size: 1.5rem;
       font-weight: bold;
@@ -56,29 +56,33 @@
     <div id="overlay_text">You Win!  Press space to restart.</div>
   </div>
   <div id="app" style="display:none;">
-    <div class="header">
-      <div>
-        <label>Puzzle : </label>
+    <div id="header" style="visibility:hidden">
+      <div style="color: yellow">
+        <label>Puzzle: </label>
         <label id="puzzleLabel"></label>
       </div>
-      <div>
-        <label>Number of Moves : </label>
+      <div style="color: lightcoral">
+        <label>Number of Moves: </label>
         <label id="numberOfMovesLabel">0</label>
       </div>
-      <div>
-        <label>Min. number of moves : </label>
+      <div style="color: lightgreen">
+        <label>Min. number of moves: </label>
         <label id="minimumNumberOfMovesLabel"></label>
       </div>
       <div>
         <button id="restartButton">Restart</button>
         <button id="newPuzzleButton">New Puzzle</button>
+        <button id="muteButton">Mute</button>
       </div>
     </div>
     <div id="game-board"></div>
-    <p> <b>Instructions:</b> Move the matching-colored Robot to the Goal Square.  Spacebar to swap robot controls.
+    <p style="text-align:center">
+      <b>Instructions:</b> Move the matching-colored Robot to the Goal Square.  Spacebar to swap robot controls.
     </p>
-    <img id="wasd-yellow-blue" src="src/images/wasd-yellow-blue.png"/>
-    <img id="wasd-red-green" src="src/images/wasd-red-green.png" style="display:none;"/>
+    <div style="text-align:center">
+      <img id="wasd-yellow-blue" src="src/images/wasd-yellow-blue.png"/>
+      <img id="wasd-red-green" src="src/images/wasd-red-green.png" style="display:none;"/>
+    </div>
   </div>
   <div style="display:none;">
     <img id="red-robot-front" src="src/images/robot-1-red/front.svg"/>
@@ -97,6 +101,7 @@
     <img id="yellow-robot-back" src="src/images/robot-4-yellow/back.svg"/>
     <img id="yellow-robot-left" src="src/images/robot-4-yellow/left.svg"/>
     <img id="yellow-robot-right" src="src/images/robot-4-yellow/right.svg"/>
+    <audio id="bg-music" src="src/sounds/Cleansing_Rain_v1.0.mp3" type="audio/mpeg" autostart="0"></audio>
   </div>
   <script src="src/main.js" type="module"></script>
 </body>

@@ -119,4 +119,16 @@ export default class CanvasView {
       }
     }
   }
+
+  showSplashScreen(title, message) {
+    this.context.fillStyle = "lightgreen";
+    this.context.font = (this.height / 10) + "px consolas";
+    this.context.textAlign = "center";
+    this.context.strokeStyle = "black";
+    this.context.strokeText(title, this.width/2, this.height/4);
+    this.context.fillText(title, this.width/2, this.height/4);
+    this.context.strokeText(message, this.width/2, this.height*(3/4));
+    this.context.fillStyle = "white";
+    this.context.fillText(message, this.width/2, this.height*(3/4));
+  }
 }

@@ -1,16 +1,18 @@
 import {
   getBody,
+  getMuteButton,
   getNewPuzzleButton,
   getRestartButton,
   hideOverlay,
-  showOverlay,
-} from './dom-helper.js';
-import {
   incrementNumberOfMovesLabel,
+  muteBackgroundMusic,
+  playBackgroundMusic,
   resetNumberOfMovesLabel,
   setMinimumNumberOfMovesLabel,
   setPuzzleNumber,
   showApp,
+  showOverlay,
+  showHeaderBar,
   swapRobotControlsToRedGreen,
   swapRobotControlsToYellowBlue,
 } from './dom-helper.js';
@@ -34,8 +36,10 @@ export default class GameView {
     this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
     this.swapControlsCallback = swapControlsCallback;
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
+    getMuteButton().addEventListener('click', muteBackgroundMusic);
     getNewPuzzleButton().addEventListener('click', this.initializeGameCallback);
     getRestartButton().addEventListener('click', this._handleRestartButtonClicked.bind(this));
+    showApp();
   }
 
   initializeGame(puzzleId, minimumNumberOfMoves, activeRobots) {
@@ -46,7 +50,6 @@ export default class GameView {
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
     setPuzzleNumber(puzzleId);
     swapRobotControlsToYellowBlue();
-    showApp();
   }
 
   incrementNumberOfMoves() {
@@ -89,6 +92,13 @@ export default class GameView {
     }
 
     if (e.keyCode === SPACE_BAR_KEYCODE) {
+      // Start First Game
+      if (this.puzzleId === undefined) {
+        playBackgroundMusic();
+        this.initializeGameCallback();
+        showHeaderBar();
+        return;
+      }
       if (this.overlayVisible) {
         this.hideVictoryScreen();
         this.initializeGameCallback();

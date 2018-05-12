@@ -19,7 +19,13 @@ export default class GameController {
       initializeGameWithPuzzleIdCallback,
       swapControlsCallback,
     );
-    this.initializeGame();
+    const initialBoard = {
+      SQUARE_SIZE_IN_PIXELS: 50,
+      HORIZONTAL_SQUARES: 20,
+      VERTICAL_SQUARES: 10,
+    };
+    this.createBoard(initialBoard);
+    this.canvasView.showSplashScreen("Sliding Robots", "Press Space to begin");
   }
 
   initializeGame() {

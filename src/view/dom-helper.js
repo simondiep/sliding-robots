@@ -27,6 +27,10 @@ export function getRobotImages(color) {
   };
 }
 
+export function getMuteButton() {
+  return document.getElementById('muteButton');
+}
+
 export function getNewPuzzleButton() {
   return document.getElementById('newPuzzleButton');
 }
@@ -49,6 +53,17 @@ export function hideOverlay() {
   document.getElementById('overlay').style.display = 'none';
 }
 
+export function muteBackgroundMusic() {
+  const music = document.getElementById('bg-music');
+  music.pause();
+}
+
+export function playBackgroundMusic() {
+  const music = document.getElementById('bg-music');
+  music.volume = 0.05;
+  music.play();
+}
+
 export function setMinimumNumberOfMovesLabel(moves) {
   document.getElementById('minimumNumberOfMovesLabel').innerHTML = moves;
 }
@@ -61,16 +76,20 @@ export function showApp() {
   document.getElementById('app').style.display = 'table';
 }
 
+export function showHeaderBar() {
+  document.getElementById('header').style.visibility = 'visible';
+}
+
 export function showOverlay() {
   document.getElementById('overlay').style.display = 'block';
 }
 
 export function swapRobotControlsToRedGreen() {
   document.getElementById('wasd-yellow-blue').style.display = 'none';
-  document.getElementById('wasd-red-green').style.display = 'block';
+  document.getElementById('wasd-red-green').style.display = 'inline-block';
 }
 
 export function swapRobotControlsToYellowBlue() {
   document.getElementById('wasd-red-green').style.display = 'none';
-  document.getElementById('wasd-yellow-blue').style.display = 'block';
+  document.getElementById('wasd-yellow-blue').style.display = 'inline-block';
 }

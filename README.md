@@ -30,3 +30,8 @@ Nodejs and live-server are recommended if you want to develop and see live-updat
 npm i
 npm start
 ```
+
+# Credits
+
+Awesome background music from https://github.com/OpenSourceMusic/Cleansing-Rain
+Fun robot image from https://openclipart.org/user-detail/anarres
