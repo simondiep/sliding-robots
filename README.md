@@ -19,7 +19,7 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 
 ## Development notes
 
-This game does not use any libraries or dependencies. You can load it up on your browser as is.
+This game does not use any libraries or dependencies.
 
 Nodejs and live-server are recommended if you want to develop and see live-updates without refreshing your browser.
 
