@@ -34,4 +34,4 @@ npm start
 
 Awesome background music from https://github.com/OpenSourceMusic/Cleansing-Rain
 
-Fun robot image from https://openclipart.org/user-detail/anarres
+Fun robot image from https://openclipart.org/user-detail/anarres and updated by https://github.com/BozarthPrime
