@@ -8,10 +8,7 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 
 * View a solution
 * High scores similar to http://www.robotreboot.com/highscore
-* More intuitive controls
-  * Key selectors (1234) and wasd
-    * Add robot numbers to robot images
-    * Add goal robot number to goal square
+* Add goal robot number to goal square
 * Ability to select a specific premade puzzle
 * Procedurally generated puzzles based on seed
 * Display previous commands
