@@ -13,12 +13,10 @@ export default class GameController {
     const keyDownCallback = this.keyDownCallback.bind(this);
     const initializeGameCallback = this.initializeGame.bind(this);
     const initializeGameWithPuzzleIdCallback = this.initializeGameWithPuzzleId.bind(this);
-    const swapControlsCallback = this.swapControlsCallback.bind(this);
     this.gameView = new GameView(
       keyDownCallback,
       initializeGameCallback,
       initializeGameWithPuzzleIdCallback,
-      swapControlsCallback,
     );
     const initialBoard = {
       SQUARE_SIZE_IN_PIXELS: 50,
@@ -163,14 +161,6 @@ export default class GameController {
     } else if (ROBOTS.YELLOW.keyCodes.indexOf(keyCode) > -1) {
       this.activeRobot = ROBOTS.YELLOW;
       return true;
-    }
-  }
-
-  swapControlsCallback() {
-    if (this.activeRobot === 'yellowBlue') {
-      this.activeRobot = 'redGreen';
-    } else {
-      this.activeRobot = 'yellowBlue';
     }
   }
 }

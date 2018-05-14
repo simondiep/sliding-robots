@@ -22,13 +22,13 @@ export function applyKeyCodeToRobot(keyCode, robots, activeRobotInfo) {
   var activeRobot = null;
 
   for (const robot of robots) {
-    if (robot.getId() == activeRobotInfo.id) {
-      activeRobot = robot;
+    if (robot.getDirection()) {
+      // Don't change direction if any robot is already moving
+      return;
     }
 
-    if (robot.getDirection()) {
-      // Don't change direction if already moving
-      return;
+    if (robot.getId() == activeRobotInfo.id) {
+      activeRobot = robot;
     }
   }
 
