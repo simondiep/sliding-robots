@@ -1,5 +1,6 @@
 import Coordinate from '../model/coordinate.js';
 import Direction, { isDown, isLeft, isRight, isUp } from '../model/direction.js';
+import Robot, { ROBOTS } from '../model/robot.js';
 
 const WASD_KEYCODE_TO_DIRECTION = {
   87: Direction.UP,
@@ -17,38 +18,26 @@ const ARROW_KEYCODE_TO_DIRECTION = {
 
 // Only one robot can be moving at a time
 // Return true if keycode was valid
-export function applyKeyCodeToRobot(keyCode, robots, activeRobots) {
+export function applyKeyCodeToRobot(keyCode, robots, activeRobotInfo) {
+  var activeRobot = null;
+
   for (const robot of robots) {
+    if (robot.getId() == activeRobotInfo.id) {
+      activeRobot = robot;
+    }
+
     if (robot.getDirection()) {
       // Don't change direction if already moving
       return;
     }
   }
 
-  for (const robot of robots) {
-    if (activeRobots === 'yellowBlue') {
-      if (robot.getColor() === 'yellow' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
-        robot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
-        return true;
-      } else if (
-        robot.getColor() === 'blue' &&
-        ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)
-      ) {
-        robot.setDirection(ARROW_KEYCODE_TO_DIRECTION[keyCode]);
-        return true;
-      }
-    } else if (activeRobots === 'redGreen') {
-      if (robot.getColor() === 'red' && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
-        robot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
-        return true;
-      } else if (
-        robot.getColor() === 'green' &&
-        ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)
-      ) {
-        robot.setDirection(ARROW_KEYCODE_TO_DIRECTION[keyCode]);
-        return true;
-      }
-    }
+  if (activeRobot != null && WASD_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
+    activeRobot.setDirection(WASD_KEYCODE_TO_DIRECTION[keyCode]);
+    return true;
+  } else if (activeRobot != null && ARROW_KEYCODE_TO_DIRECTION.hasOwnProperty(keyCode)) {
+    activeRobot.setDirection(ARROW_KEYCODE_TO_DIRECTION[keyCode]);
+    return true;
   }
 }
 

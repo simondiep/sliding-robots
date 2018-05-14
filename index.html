@@ -48,6 +48,40 @@
       padding: 10px 0 10px 0;
       margin-bottom: 10px;
     }
+
+    #robot-control-box {
+      margin: 10px 0 10px 0;
+    }
+
+    #robot-control-box span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+
+    #robot-control-box img {
+      max-height: 40px;
+      max-width: 40px;
+    }
+
+    #robot-control-box .selected{
+      opacity: 1;
+    }
+
+    #robot-control-box .unselected{
+      opacity: 0.2;
+    }
+
+    .button {
+      border: 2px solid #A2A2A2;
+      color: #A2A2A2;
+      text-align: center;
+      vertical-align: middle;
+      padding: 0 2px 0 2px;
+      height: 1.8rem;
+      cursor: pointer;
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -70,19 +104,25 @@
         <label id="minimumNumberOfMovesLabel"></label>
       </div>
       <div>
-        <button id="restartButton">Restart</button>
-        <button id="newPuzzleButton">New Puzzle</button>
-        <button id="muteButton">Mute</button>
+        <div id="restartButton" class="button">Restart</div>
+        <div id="newPuzzleButton" class="button">New Puzzle</div>
+        <div id="muteButton" class="button">Mute</div>
+
+
       </div>
     </div>
-    <div id="game-board"></div>
-    <p style="text-align:center">
-      <b>Instructions:</b> Move the matching-colored Robot to the Goal Square.  Spacebar to swap robot controls.
-    </p>
-    <div style="text-align:center">
-      <img id="wasd-yellow-blue" src="src/images/wasd-yellow-blue.png"/>
-      <img id="wasd-red-green" src="src/images/wasd-red-green.png" style="display:none;"/>
+    <div id="robot-control-box">
+      <span>Selected:</selected>
+      <img id="red-robot-control" src="src/images/robot-1-red/front.svg" class="selected"/>
+      <img id="green-robot-control" src="src/images/robot-2-green/front.svg" class="unselected"/>
+      <img id="blue-robot-control" src="src/images/robot-3-blue/front.svg" class="unselected"/>
+      <img id="yellow-robot-control" src="src/images/robot-4-yellow/front.svg" class="unselected"/>
     </div>
+    <div id="game-board"></div>
+    <p style="text-align:justify">
+      <b>Instructions:</b> Move the matching-colored Robot to the Goal Square.
+      Use the number keys to slect a robot and the arrow keys or wasd to move.
+    </p>
   </div>
   <div style="display:none;">
     <img id="red-robot-front" src="src/images/robot-1-red/front.svg"/>

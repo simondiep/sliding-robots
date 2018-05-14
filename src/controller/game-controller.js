@@ -3,6 +3,7 @@ import GameView from '../view/game-view.js';
 import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
 import { getPuzzle, getRandomPuzzleId } from '../puzzles/puzzle-factory.js';
 import WallCoordinate from '../model/wall-coordinate.js';
+import { ROBOTS } from '../model/robot.js';
 
 /**
  * Controls all game logic
@@ -37,7 +38,7 @@ export default class GameController {
   }
 
   initializeGameWithPuzzleId(puzzleId) {
-    this.activeRobots = 'yellowBlue';
+    this.activeRobot = ROBOTS.RED;
     this.puzzle = getPuzzle(puzzleId);
     const borderWalls = this.getBorderWalls(
       this.puzzle.board.HORIZONTAL_SQUARES,
@@ -45,7 +46,7 @@ export default class GameController {
     );
     this.walls = borderWalls.concat(this.puzzle.walls);
     this.createBoard(this.puzzle.board);
-    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobots);
+    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobot);
     this.lastMoveTime = Date.now();
     this.renderGame();
   }
@@ -136,7 +137,11 @@ export default class GameController {
    *******************/
 
   keyDownCallback(keyCode) {
-    const validKey = applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobots);
+    if (this.swapActiveRobot(keyCode)) {
+      return;
+    }
+
+    const validKey = applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobot);
     if (validKey) {
       this.lastMoveTime = Date.now();
       if (!this.rendering) {
@@ -145,11 +150,27 @@ export default class GameController {
     }
   }
 
+  swapActiveRobot(keyCode) {
+    if (ROBOTS.RED.keyCodes.indexOf(keyCode) > -1) {
+      this.activeRobot = ROBOTS.RED;
+      return true;
+    } else if (ROBOTS.GREEN.keyCodes.indexOf(keyCode) > -1) {
+      this.activeRobot = ROBOTS.GREEN;
+      return true;
+    } else if (ROBOTS.BLUE.keyCodes.indexOf(keyCode) > -1) {
+      this.activeRobot = ROBOTS.BLUE;
+      return true;
+    } else if (ROBOTS.YELLOW.keyCodes.indexOf(keyCode) > -1) {
+      this.activeRobot = ROBOTS.YELLOW;
+      return true;
+    }
+  }
+
   swapControlsCallback() {
-    if (this.activeRobots === 'yellowBlue') {
-      this.activeRobots = 'redGreen';
+    if (this.activeRobot === 'yellowBlue') {
+      this.activeRobot = 'redGreen';
     } else {
-      this.activeRobots = 'yellowBlue';
+      this.activeRobot = 'yellowBlue';
     }
   }
 }

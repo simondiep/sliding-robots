@@ -54,7 +54,7 @@ export function hideOverlay() {
 }
 
 export function muteBackgroundMusic() {
-  const music = document.getElementById('bg-music');
+  const music = document.getElementById('music-background');
   music.pause();
 }
 
@@ -96,12 +96,29 @@ export function showOverlay() {
   document.getElementById('overlay').style.display = 'block';
 }
 
-export function swapRobotControlsToRedGreen() {
-  document.getElementById('wasd-yellow-blue').style.display = 'none';
-  document.getElementById('wasd-red-green').style.display = 'inline-block';
+export function swapRobotControlsToRed() {
+  setAllRobotsToUnselected();
+  document.getElementById('red-robot-control').className = 'selected';
 }
 
-export function swapRobotControlsToYellowBlue() {
-  document.getElementById('wasd-red-green').style.display = 'none';
-  document.getElementById('wasd-yellow-blue').style.display = 'inline-block';
+export function swapRobotControlsToGreen() {
+  setAllRobotsToUnselected();
+  document.getElementById('green-robot-control').className = 'selected';
+}
+
+export function swapRobotControlsToBlue() {
+  setAllRobotsToUnselected();
+  document.getElementById('blue-robot-control').className = 'selected';
+}
+
+export function swapRobotControlsToYellow() {
+  setAllRobotsToUnselected();
+  document.getElementById('yellow-robot-control').className = 'selected';
+}
+
+function setAllRobotsToUnselected() {
+  document.getElementById('red-robot-control').className = 'unselected';
+  document.getElementById('green-robot-control').className = 'unselected';
+  document.getElementById('blue-robot-control').className = 'unselected';
+  document.getElementById('yellow-robot-control').className = 'unselected';
 }

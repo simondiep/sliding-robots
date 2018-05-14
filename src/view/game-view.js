@@ -15,13 +15,25 @@ import {
   showApp,
   showOverlay,
   showHeaderBar,
-  swapRobotControlsToRedGreen,
-  swapRobotControlsToYellowBlue,
+  swapRobotControlsToRed,
+  swapRobotControlsToGreen,
+  swapRobotControlsToBlue,
+  swapRobotControlsToYellow,
 } from './dom-helper.js';
+import { ROBOTS } from '../model/robot.js';
 
 const SPACE_BAR_KEYCODE = 32;
 const UP_ARROW_KEYCODE = 38;
 const DOWN_ARROW_KEYCODE = 40;
+const ONE_KEYCODE = 49;
+const ONE_NUMPAD_KEYCODE = 97;
+const TWO_KEYCODE = 50;
+const TWO_NUMPAD_KEYCODE = 98;
+const THREE_KEYCODE = 51;
+const THREE_NUMPAD_KEYCODE = 99
+const FOUR_KEYCODE = 52;
+const FOUR_NUMPAD_KEYCODE = 100;
+
 
 /**
  * Handles all requests related to the display of the game, not including the canvas
@@ -45,14 +57,14 @@ export default class GameView {
     showApp();
   }
 
-  initializeGame(puzzleId, minimumNumberOfMoves, activeRobots) {
+  initializeGame(puzzleId, minimumNumberOfMoves, activeRobot) {
     this.puzzleId = puzzleId;
-    this.activeRobots = activeRobots;
+    this.activeRobot = activeRobot;
     this.hideVictoryScreen();
     resetNumberOfMovesLabel();
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
     setPuzzleNumber(puzzleId);
-    swapRobotControlsToYellowBlue();
+    swapRobotControlsToRed();
   }
 
   robotHasStoppedMoving() {
@@ -71,13 +83,30 @@ export default class GameView {
     this.overlayVisible = true;
   }
 
-  _swapRobotControls() {
-    if (this.activeRobots === 'yellowBlue') {
-      swapRobotControlsToRedGreen();
-      this.activeRobots = 'redGreen';
-    } else {
-      swapRobotControlsToYellowBlue();
-      this.activeRobots = 'yellowBlue';
+  _swapRobotControls(keyCode) {
+    switch(keyCode) {
+      case ONE_KEYCODE:
+      case ONE_NUMPAD_KEYCODE:
+          swapRobotControlsToRed();
+          this.activeRobot = ROBOTS.RED.id;
+          break;
+      case TWO_KEYCODE:
+      case TWO_NUMPAD_KEYCODE:
+          swapRobotControlsToGreen();
+          this.activeRobot = ROBOTS.GREEN.id;
+          break;
+      case THREE_KEYCODE:
+      case THREE_NUMPAD_KEYCODE:
+          swapRobotControlsToBlue();
+          this.activeRobot = ROBOTS.BLUE.id;
+          break;
+      case FOUR_KEYCODE:
+      case FOUR_NUMPAD_KEYCODE:
+          swapRobotControlsToYellow();
+          this.activeRobot = ROBOTS.YELLOW.id;
+          break;
+      default:
+          break;
     }
   }
 
@@ -109,11 +138,9 @@ export default class GameView {
         this.initializeGameCallback();
         return;
       }
-      this._swapRobotControls();
-      this.swapControlsCallback();
-      return;
     }
 
+    this._swapRobotControls(e.keyCode);
     this.keyDownCallback(e.keyCode);
   }
 
