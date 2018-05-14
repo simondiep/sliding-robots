@@ -28,7 +28,7 @@ export default class GameController {
       initialBoard.HORIZONTAL_SQUARES,
       initialBoard.VERTICAL_SQUARES,
     );
-    this.canvasView.showSplashScreen("Sliding Robots", "Press Space to begin");
+    this.canvasView.showSplashScreen('Sliding Robots', 'Press Space to begin');
   }
 
   initializeGame() {
@@ -65,9 +65,10 @@ export default class GameController {
 
     this.canvasView.clear();
 
-    this.canvasView.drawWalls(this.walls, 'gray');
     this.canvasView.drawSquare(this.puzzle.goalLocation, this.puzzle.goalColor);
     this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
+    this.canvasView.drawWalls(this.walls, 'gray');
+
     // Draw all robots
     for (const robot of this.puzzle.robots) {
       this.canvasView.drawImage(robot.getLocation(), robot.getImage());
