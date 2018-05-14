@@ -57,9 +57,14 @@ const puzzleFactory = {
       new Robot(new Coordinate(3, 0), ROBOTS.GREEN),
     ],
     goalColor: 'green',
-    goalLocation: new Coordinate(11, 3),
-    walls: [],
-    minimumNumberOfMoves: 10,
+    goalLocation: new Coordinate(4, 5),
+    walls: [
+      new WallCoordinate(4, 2, { top: true, left: true }),
+      new WallCoordinate(15, 2, { top: true, right: true }),
+      new WallCoordinate(2, 8, { top: true, left: true }),
+      new WallCoordinate(15, 8, { bottom: true, right: true }),
+    ],
+    minimumNumberOfMoves: 8,
   }),
   4: () => ({
     board: {

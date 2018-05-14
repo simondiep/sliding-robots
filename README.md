@@ -2,6 +2,8 @@
 
 A game where you try to get a robot to a destination by colliding with other robots.
 
+![Preview](https://simondiep.github.io/sliding-robots/preview.gif)
+
 Try it out [here](https://simondiep.github.io/sliding-robots/)
 
 ## Upcoming Ideas List
