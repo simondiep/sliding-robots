@@ -37,16 +37,12 @@
         font-family: consolas;
         color: #8E328E;
     }
-    #header {
-      color: #B7B841;
-      font-size: 1.5rem;
+    .header {
       font-weight: bold;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: space-between;
-      padding: 10px 0 10px 0;
-      margin-bottom: 10px;
     }
 
     #robot-control-box {
@@ -71,8 +67,14 @@
     #robot-control-box .unselected{
       opacity: 0.2;
     }
-
-    .button {
+    .button-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 50%;
+    }
+    .button-bar .button {
+      margin-left: 10px;
       border: 2px solid #A2A2A2;
       color: #A2A2A2;
       text-align: center;
@@ -90,7 +92,7 @@
     <div id="overlay_text">You Win!  Press space to restart.</div>
   </div>
   <div id="app" style="display:none;">
-    <div id="header" style="visibility:hidden">
+    <div class="header" style="visibility:hidden">
       <div style="color: yellow">
         <label>Puzzle: </label>
         <label id="puzzleLabel"></label>
@@ -103,28 +105,30 @@
         <label>Min. number of moves: </label>
         <label id="minimumNumberOfMovesLabel"></label>
       </div>
-      <div>
+    </div>
+    <div class="header" style="visibility:hidden">
+      <div id="robot-control-box">
+        <span>Selected:</span>
+        <img id="red-robot-control" src="src/images/robot-1-red/front.svg" class="selected"/>
+        <img id="green-robot-control" src="src/images/robot-2-green/front.svg" class="unselected"/>
+        <img id="blue-robot-control" src="src/images/robot-3-blue/front.svg" class="unselected"/>
+        <img id="yellow-robot-control" src="src/images/robot-4-yellow/front.svg" class="unselected"/>
+      </div>
+      <div class="button-bar">
         <div id="restartButton" class="button">Restart</div>
         <div id="newPuzzleButton" class="button">New Puzzle</div>
         <div id="muteButton" class="button">Mute</div>
-
-
       </div>
-    </div>
-    <div id="robot-control-box">
-      <span>Selected:</selected>
-      <img id="red-robot-control" src="src/images/robot-1-red/front.svg" class="selected"/>
-      <img id="green-robot-control" src="src/images/robot-2-green/front.svg" class="unselected"/>
-      <img id="blue-robot-control" src="src/images/robot-3-blue/front.svg" class="unselected"/>
-      <img id="yellow-robot-control" src="src/images/robot-4-yellow/front.svg" class="unselected"/>
     </div>
     <div id="game-board"></div>
     <p style="text-align:justify">
       <b>Instructions:</b> Move the matching-colored Robot to the Goal Square.
+    </p>
+    <p>
       Use the number keys to select a robot and the arrow keys or wasd to move.
     </p>
   </div>
-  <div style="display:none;">
+  <div id="static-assets" style="display:none;">
     <img id="red-robot-front" src="src/images/robot-1-red/front.svg"/>
     <img id="red-robot-back" src="src/images/robot-1-red/back.svg"/>
     <img id="red-robot-left" src="src/images/robot-1-red/left.svg"/>

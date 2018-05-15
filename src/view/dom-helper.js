@@ -60,7 +60,7 @@ export function muteBackgroundMusic() {
 
 export function playBackgroundMusic(volume) {
   const music = document.getElementById('music-background');
-  music.volume = volume/2;
+  music.volume = volume / 2;
   music.play();
 }
 
@@ -89,7 +89,9 @@ export function showApp() {
 }
 
 export function showHeaderBar() {
-  document.getElementById('header').style.visibility = 'visible';
+  for (const element of document.getElementsByClassName('header')) {
+    element.style.visibility = 'visible';
+  }
 }
 
 export function showOverlay() {

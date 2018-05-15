@@ -18,15 +18,15 @@ export default class GameController {
       initializeGameCallback,
       initializeGameWithPuzzleIdCallback,
     );
-    const initialBoard = {
-      SQUARE_SIZE_IN_PIXELS: 50,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 10,
+    this.board = {
+      SQUARE_SIZE_IN_PIXELS: 35,
+      HORIZONTAL_SQUARES: 16,
+      VERTICAL_SQUARES: 16,
     };
     this.canvasView = createCanvasView(
-      initialBoard.SQUARE_SIZE_IN_PIXELS,
-      initialBoard.HORIZONTAL_SQUARES,
-      initialBoard.VERTICAL_SQUARES,
+      this.board.SQUARE_SIZE_IN_PIXELS,
+      this.board.HORIZONTAL_SQUARES,
+      this.board.VERTICAL_SQUARES,
     );
     this.canvasView.showSplashScreen('Sliding Robots', 'Press Space to begin');
   }
@@ -39,11 +39,17 @@ export default class GameController {
     this.activeRobot = ROBOTS.RED;
     this.puzzle = getPuzzle(puzzleId);
     const borderWalls = this.getBorderWalls(
-      this.puzzle.board.HORIZONTAL_SQUARES,
-      this.puzzle.board.VERTICAL_SQUARES,
+      this.board.HORIZONTAL_SQUARES,
+      this.board.VERTICAL_SQUARES,
     );
     this.walls = borderWalls.concat(this.puzzle.walls);
-    this.createBoard(this.puzzle.board);
+    this.canvasView = createCanvasView(
+      this.board.SQUARE_SIZE_IN_PIXELS,
+      this.board.HORIZONTAL_SQUARES,
+      this.board.VERTICAL_SQUARES,
+    );
+    this.canvasView.clear();
+
     this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobot);
     this.lastMoveTime = Date.now();
     this.renderGame();
@@ -96,15 +102,6 @@ export default class GameController {
     } else {
       this.rendering = false;
     }
-  }
-
-  createBoard(board) {
-    this.canvasView = createCanvasView(
-      board.SQUARE_SIZE_IN_PIXELS,
-      board.HORIZONTAL_SQUARES,
-      board.VERTICAL_SQUARES,
-    );
-    this.canvasView.clear();
   }
 
   getBorderWalls(horizontalSquares, verticalSquares) {

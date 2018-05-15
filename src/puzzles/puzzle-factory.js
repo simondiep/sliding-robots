@@ -4,16 +4,11 @@ import Robot, { ROBOTS } from '../model/robot.js';
 
 const puzzleFactory = {
   1: () => ({
-    board: {
-      SQUARE_SIZE_IN_PIXELS: 50,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 10,
-    },
     robots: [
       new Robot(new Coordinate(0, 0), ROBOTS.YELLOW),
       new Robot(new Coordinate(1, 1), ROBOTS.BLUE),
       new Robot(new Coordinate(13, 4), ROBOTS.RED),
-      new Robot(new Coordinate(18, 2), ROBOTS.GREEN),
+      new Robot(new Coordinate(14, 2), ROBOTS.GREEN),
     ],
     goalColor: 'yellow',
     goalLocation: new Coordinate(2, 2),
@@ -21,16 +16,11 @@ const puzzleFactory = {
       new WallCoordinate(4, 1, { left: true, top: true }),
       new WallCoordinate(7, 8, { right: true }),
       new WallCoordinate(13, 4, { right: true, top: true }),
-      new WallCoordinate(18, 2, { bottom: true, right: true }),
+      new WallCoordinate(14, 2, { bottom: true, right: true }),
     ],
     minimumNumberOfMoves: 4,
   }),
   2: () => ({
-    board: {
-      SQUARE_SIZE_IN_PIXELS: 50,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 10,
-    },
     robots: [
       new Robot(new Coordinate(10, 8), ROBOTS.YELLOW),
       new Robot(new Coordinate(7, 8), ROBOTS.BLUE),
@@ -47,11 +37,6 @@ const puzzleFactory = {
     minimumNumberOfMoves: 5,
   }),
   3: () => ({
-    board: {
-      SQUARE_SIZE_IN_PIXELS: 50,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 10,
-    },
     robots: [
       new Robot(new Coordinate(0, 0), ROBOTS.YELLOW),
       new Robot(new Coordinate(1, 0), ROBOTS.BLUE),
@@ -62,18 +47,13 @@ const puzzleFactory = {
     goalLocation: new Coordinate(4, 5),
     walls: [
       new WallCoordinate(4, 2, { top: true, left: true }),
-      new WallCoordinate(15, 2, { top: true, right: true }),
+      new WallCoordinate(14, 2, { top: true, right: true }),
       new WallCoordinate(2, 8, { top: true, left: true }),
-      new WallCoordinate(15, 8, { bottom: true, right: true }),
+      new WallCoordinate(14, 8, { bottom: true, right: true }),
     ],
     minimumNumberOfMoves: 8,
   }),
   4: () => ({
-    board: {
-      SQUARE_SIZE_IN_PIXELS: 50,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 10,
-    },
     robots: [
       new Robot(new Coordinate(0, 0), ROBOTS.YELLOW),
       new Robot(new Coordinate(1, 0), ROBOTS.BLUE),
@@ -90,11 +70,6 @@ const puzzleFactory = {
     minimumNumberOfMoves: 6,
   }),
   5: () => ({
-    board: {
-      SQUARE_SIZE_IN_PIXELS: 50,
-      HORIZONTAL_SQUARES: 20,
-      VERTICAL_SQUARES: 10,
-    },
     robots: [
       new Robot(new Coordinate(8, 2), ROBOTS.YELLOW),
       new Robot(new Coordinate(12, 5), ROBOTS.BLUE),
@@ -105,13 +80,13 @@ const puzzleFactory = {
     goalLocation: new Coordinate(6, 5),
     walls: [
       new WallCoordinate(4, 3, { top: true, left: true }),
-      new WallCoordinate(15, 3, { top: true, right: true }),
+      new WallCoordinate(12, 3, { top: true, right: true }),
       new WallCoordinate(4, 7, { top: true, left: true }),
-      new WallCoordinate(15, 7, { bottom: true, right: true }),
+      new WallCoordinate(12, 7, { bottom: true, right: true }),
       new WallCoordinate(6, 4, { bottom: true, left: true }),
-      new WallCoordinate(17, 4, { top: true, right: true }),
+      new WallCoordinate(14, 4, { top: true, right: true }),
       new WallCoordinate(6, 6, { bottom: true, left: true }),
-      new WallCoordinate(17, 6, { bottom: true, right: true }),
+      new WallCoordinate(14, 6, { bottom: true, right: true }),
     ],
     minimumNumberOfMoves: 7,
   }),
