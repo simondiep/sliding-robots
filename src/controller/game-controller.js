@@ -48,7 +48,7 @@ export default class GameController {
       this.board.HORIZONTAL_SQUARES,
       this.board.VERTICAL_SQUARES,
     );
-    this.canvasView.clear();
+    this.canvasView.clearAndDrawBoard();
 
     this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobot);
     this.lastMoveTime = Date.now();
@@ -69,11 +69,11 @@ export default class GameController {
       }
     }
 
-    this.canvasView.clear();
+    this.canvasView.clearAndDrawBoard();
 
     this.canvasView.drawSquare(this.puzzle.goalLocation, this.puzzle.goalColor);
     this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
-    this.canvasView.drawWalls(this.walls, 'gray');
+    this.canvasView.drawWalls(this.walls, '#373b42', 'lightgray');
 
     // Draw all robots
     for (const robot of this.puzzle.robots) {
