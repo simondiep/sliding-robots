@@ -1,40 +1,18 @@
 import Coordinate from '../model/coordinate.js';
 import WallCoordinate from '../model/wall-coordinate.js';
 import Robot, { ROBOTS } from '../model/robot.js';
+import { board as board1, minimumNumberOfMoves as minimumNumberOfMoves1 } from './board1.js';
+import { board as board2, minimumNumberOfMoves as minimumNumberOfMoves2 } from './board2.js';
 
+// TODO Convert rest of puzzles to individual boards
 const puzzleFactory = {
   1: () => ({
-    robots: [
-      new Robot(new Coordinate(0, 0), ROBOTS.YELLOW),
-      new Robot(new Coordinate(1, 1), ROBOTS.BLUE),
-      new Robot(new Coordinate(13, 4), ROBOTS.RED),
-      new Robot(new Coordinate(14, 2), ROBOTS.GREEN),
-    ],
-    goalColor: 'yellow',
-    goalLocation: new Coordinate(2, 2),
-    walls: [
-      new WallCoordinate(4, 1, { left: true, top: true }),
-      new WallCoordinate(7, 8, { right: true }),
-      new WallCoordinate(13, 4, { right: true, top: true }),
-      new WallCoordinate(14, 2, { bottom: true, right: true }),
-    ],
-    minimumNumberOfMoves: 4,
+    ...parseBoard(board1),
+    minimumNumberOfMoves: minimumNumberOfMoves1,
   }),
   2: () => ({
-    robots: [
-      new Robot(new Coordinate(10, 8), ROBOTS.YELLOW),
-      new Robot(new Coordinate(7, 8), ROBOTS.BLUE),
-      new Robot(new Coordinate(5, 5), ROBOTS.RED),
-      new Robot(new Coordinate(8, 3), ROBOTS.GREEN),
-    ],
-    goalColor: 'red',
-    goalLocation: new Coordinate(8, 2),
-    walls: [
-      new WallCoordinate(1, 7, { bottom: true, left: true }),
-      new WallCoordinate(7, 8, { left: true, top: true }),
-      new WallCoordinate(8, 3, { right: true, top: true }),
-    ],
-    minimumNumberOfMoves: 5,
+    ...parseBoard(board2),
+    minimumNumberOfMoves: minimumNumberOfMoves2,
   }),
   3: () => ({
     robots: [
@@ -111,4 +89,74 @@ export function getRandomPuzzleId() {
 
 export function getPuzzle(puzzleId) {
   return puzzleFactory[puzzleId]();
+}
+
+// Converts a board array into an structure of robots, walls, and goal objects
+function parseBoard(boardAsArray) {
+  let blueRobotLocation;
+  let greenRobotLocation;
+  let redRobotLocation;
+  let yellowRobotLocation;
+  let goalColor;
+  let goalLocation;
+  let walls = [];
+  for (let rowIndex = 0; rowIndex < boardAsArray.length; rowIndex++) {
+    const columns = boardAsArray[rowIndex].split(',');
+    for (let colIndex = 0; colIndex < columns.length; colIndex++) {
+      const value = columns[colIndex].trim();
+      if (value === '_') {
+        continue;
+      }
+      // Walls
+      if (value.indexOf('N') > -1) {
+        walls.push(new WallCoordinate(colIndex, rowIndex, { top: true }));
+      }
+      if (value.indexOf('E') > -1) {
+        walls.push(new WallCoordinate(colIndex, rowIndex, { right: true }));
+      }
+      if (value.indexOf('S') > -1) {
+        walls.push(new WallCoordinate(colIndex, rowIndex, { bottom: true }));
+      }
+      if (value.indexOf('W') > -1) {
+        walls.push(new WallCoordinate(colIndex, rowIndex, { left: true }));
+      }
+
+      // Robots
+      if (value.indexOf('B') > -1) {
+        blueRobotLocation = new Coordinate(colIndex, rowIndex);
+      } else if (value.indexOf('G') > -1) {
+        greenRobotLocation = new Coordinate(colIndex, rowIndex);
+      } else if (value.indexOf('R') > -1) {
+        redRobotLocation = new Coordinate(colIndex, rowIndex);
+      } else if (value.indexOf('Y') > -1) {
+        yellowRobotLocation = new Coordinate(colIndex, rowIndex);
+      }
+
+      // Goal
+      if (value.indexOf('Gb') > -1) {
+        goalColor = 'blue';
+        goalLocation = new Coordinate(colIndex, rowIndex);
+      } else if (value.indexOf('Gg') > -1) {
+        goalColor = 'green';
+        goalLocation = new Coordinate(colIndex, rowIndex);
+      } else if (value.indexOf('Gr') > -1) {
+        goalColor = 'red';
+        goalLocation = new Coordinate(colIndex, rowIndex);
+      } else if (value.indexOf('Gy') > -1) {
+        goalColor = 'yellow';
+        goalLocation = new Coordinate(colIndex, rowIndex);
+      }
+    }
+  }
+  return {
+    robots: [
+      new Robot(blueRobotLocation, ROBOTS.BLUE),
+      new Robot(greenRobotLocation, ROBOTS.GREEN),
+      new Robot(redRobotLocation, ROBOTS.RED),
+      new Robot(yellowRobotLocation, ROBOTS.YELLOW),
+    ],
+    goalColor,
+    goalLocation,
+    walls,
+  };
 }

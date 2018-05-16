@@ -2,7 +2,6 @@ import { createCanvasView } from '../view/canvas-factory.js';
 import GameView from '../view/game-view.js';
 import { applyKeyCodeToRobot, moveRobot } from './movement-controller.js';
 import { getPuzzle, getRandomPuzzleId } from '../puzzles/puzzle-factory.js';
-import WallCoordinate from '../model/wall-coordinate.js';
 import { ROBOTS } from '../model/robot.js';
 
 /**
@@ -38,18 +37,11 @@ export default class GameController {
   initializeGameWithPuzzleId(puzzleId) {
     this.activeRobot = ROBOTS.RED;
     this.puzzle = getPuzzle(puzzleId);
-    const borderWalls = this.getBorderWalls(
-      this.board.HORIZONTAL_SQUARES,
-      this.board.VERTICAL_SQUARES,
-    );
-    this.walls = borderWalls.concat(this.puzzle.walls);
     this.canvasView = createCanvasView(
       this.board.SQUARE_SIZE_IN_PIXELS,
       this.board.HORIZONTAL_SQUARES,
       this.board.VERTICAL_SQUARES,
     );
-    this.canvasView.clearAndDrawBoard();
-
     this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobot);
     this.lastMoveTime = Date.now();
     this.renderGame();
@@ -61,7 +53,7 @@ export default class GameController {
     for (const robot of this.puzzle.robots) {
       // Move the robot and keep track of number of moves
       const previousRobotDirection = robot.getDirection();
-      moveRobot(robot, this.walls, this.puzzle.robots);
+      moveRobot(robot, this.puzzle.walls, this.puzzle.robots);
 
       // TODO Don't count moving into wall as a move
       if (previousRobotDirection && !robot.getDirection()) {
@@ -73,7 +65,7 @@ export default class GameController {
 
     this.canvasView.drawSquare(this.puzzle.goalLocation, this.puzzle.goalColor);
     this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
-    this.canvasView.drawWalls(this.walls, '#373b42', 'lightgray');
+    this.canvasView.drawWalls(this.puzzle.walls, '#373b42', 'lightgray');
 
     // Draw all robots
     for (const robot of this.puzzle.robots) {
@@ -102,30 +94,6 @@ export default class GameController {
     } else {
       this.rendering = false;
     }
-  }
-
-  getBorderWalls(horizontalSquares, verticalSquares) {
-    const borderWalls = [];
-    // Make a wall for the top row
-    for (let index = 0; index < horizontalSquares; index++) {
-      borderWalls.push(new WallCoordinate(index, 0, { top: true }));
-    }
-
-    // Make a wall for the bottom row
-    for (let index = 0; index < horizontalSquares; index++) {
-      borderWalls.push(new WallCoordinate(index, verticalSquares - 1, { bottom: true }));
-    }
-
-    // Make a wall for the left column
-    for (let index = 0; index < verticalSquares; index++) {
-      borderWalls.push(new WallCoordinate(0, index, { left: true }));
-    }
-
-    // Make a wall for the right column
-    for (let index = 0; index < verticalSquares; index++) {
-      borderWalls.push(new WallCoordinate(horizontalSquares - 1, index, { right: true }));
-    }
-    return borderWalls;
   }
 
   /*******************
