@@ -35,14 +35,14 @@ export default class GameController {
   }
 
   initializeGameWithPuzzleId(puzzleId) {
-    this.activeRobot = ROBOTS.RED;
+    this.activeRobotInfo = ROBOTS.RED;
     this.puzzle = getPuzzle(puzzleId);
     this.canvasView = createCanvasView(
       this.board.SQUARE_SIZE_IN_PIXELS,
       this.board.HORIZONTAL_SQUARES,
       this.board.VERTICAL_SQUARES,
     );
-    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobot);
+    this.gameView.initializeGame(puzzleId, this.puzzle.minimumNumberOfMoves, this.activeRobotInfo);
     this.lastMoveTime = Date.now();
     this.renderGame();
   }
@@ -55,9 +55,8 @@ export default class GameController {
       const previousRobotDirection = robot.getDirection();
       moveRobot(robot, this.puzzle.walls, this.puzzle.robots);
 
-      // TODO Don't count moving into wall as a move
       if (previousRobotDirection && !robot.getDirection()) {
-        this.gameView.robotHasStoppedMoving();
+        this.gameView.robotHasStoppedMoving(robot.hasMoved());
       }
     }
 
@@ -70,6 +69,14 @@ export default class GameController {
     // Draw all robots
     for (const robot of this.puzzle.robots) {
       this.canvasView.drawImage(robot.getLocation(), robot.getImage());
+    }
+
+    // Draw arrows around active robot
+    for (const robot of this.puzzle.robots) {
+      if (this.activeRobotInfo.color === robot.getColor() && !robot.getDirection()) {
+        this.canvasView.drawArrowsAround(robot.getLocation(), this.activeRobotInfo.color);
+        break;
+      }
     }
 
     for (const robot of this.puzzle.robots) {
@@ -102,10 +109,11 @@ export default class GameController {
 
   keyDownCallback(keyCode) {
     if (this.swapActiveRobot(keyCode)) {
+      this.renderGame();
       return;
     }
 
-    const validKey = applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobot);
+    const validKey = applyKeyCodeToRobot(keyCode, this.puzzle.robots, this.activeRobotInfo);
     if (validKey) {
       this.lastMoveTime = Date.now();
       if (!this.rendering) {
@@ -116,16 +124,16 @@ export default class GameController {
 
   swapActiveRobot(keyCode) {
     if (ROBOTS.RED.keyCodes.indexOf(keyCode) > -1) {
-      this.activeRobot = ROBOTS.RED;
+      this.activeRobotInfo = ROBOTS.RED;
       return true;
     } else if (ROBOTS.GREEN.keyCodes.indexOf(keyCode) > -1) {
-      this.activeRobot = ROBOTS.GREEN;
+      this.activeRobotInfo = ROBOTS.GREEN;
       return true;
     } else if (ROBOTS.BLUE.keyCodes.indexOf(keyCode) > -1) {
-      this.activeRobot = ROBOTS.BLUE;
+      this.activeRobotInfo = ROBOTS.BLUE;
       return true;
     } else if (ROBOTS.YELLOW.keyCodes.indexOf(keyCode) > -1) {
-      this.activeRobot = ROBOTS.YELLOW;
+      this.activeRobotInfo = ROBOTS.YELLOW;
       return true;
     }
   }

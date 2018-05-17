@@ -19,7 +19,7 @@ const ARROW_KEYCODE_TO_DIRECTION = {
 // Only one robot can be moving at a time
 // Return true if keycode was valid
 export function applyKeyCodeToRobot(keyCode, robots, activeRobotInfo) {
-  var activeRobot = null;
+  let activeRobot = null;
 
   for (const robot of robots) {
     if (robot.getDirection()) {

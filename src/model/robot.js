@@ -14,6 +14,7 @@ export default class Robot {
     this.location = location;
     this.images = getRobotImages(robotInfo.color);
     this.direction = null;
+    this.moved = false;
   }
 
   getColor() {
@@ -49,6 +50,7 @@ export default class Robot {
 
   setLocation(location) {
     this.location = location;
+    this.moved = true;
   }
 
   getDirection() {
@@ -57,9 +59,14 @@ export default class Robot {
 
   setDirection(direction) {
     this.direction = direction;
+    this.moved = false;
   }
 
   clearDirection() {
     this.direction = null;
+  }
+
+  hasMoved() {
+    return this.moved;
   }
 }

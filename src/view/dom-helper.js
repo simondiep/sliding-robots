@@ -59,21 +59,35 @@ export function muteBackgroundMusic() {
 }
 
 export function playBackgroundMusic(volume) {
-  const music = document.getElementById('music-background');
-  music.volume = volume / 2;
-  music.play();
+  if (volume) {
+    const music = document.getElementById('music-background');
+    music.volume = volume / 2;
+    music.play();
+  }
+}
+
+export function playRobotBeepSound(volume) {
+  if (volume) {
+    const music = document.getElementById('sound-robot-beep');
+    music.volume = volume;
+    music.play();
+  }
 }
 
 export function playThudSound(volume) {
-  const music = document.getElementById('sound-thud');
-  music.volume = volume;
-  music.play();
+  if (volume) {
+    const music = document.getElementById('sound-thud');
+    music.volume = volume;
+    music.play();
+  }
 }
 
 export function playWinSound(volume) {
-  const music = document.getElementById('sound-win');
-  music.volume = volume;
-  music.play();
+  if (volume) {
+    const music = document.getElementById('sound-win');
+    music.volume = volume;
+    music.play();
+  }
 }
 
 export function setMinimumNumberOfMovesLabel(moves) {

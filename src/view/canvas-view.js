@@ -19,6 +19,47 @@ export default class CanvasView {
     }
   }
 
+  drawArrowsAround(coordinate, color) {
+    const x = coordinate.x * this.squareSizeInPixels;
+    const y = coordinate.y * this.squareSizeInPixels;
+    this.context.strokeStyle = color;
+    this.context.lineWidth = this.squareSizeInPixels / 20;
+    this.context.globalAlpha=0.7;
+    // Down arrow
+    this.context.beginPath();
+    this.context.moveTo(x + this.squareSizeInPixels / 4, y + this.squareSizeInPixels * 5 / 4);
+    this.context.lineTo(x + this.squareSizeInPixels / 2, y + this.squareSizeInPixels * 3 / 2);
+    this.context.lineTo(x + this.squareSizeInPixels * 3 / 4, y + this.squareSizeInPixels * 5 / 4);
+    this.context.closePath();
+    this.context.stroke();
+
+    // Up arrow
+    this.context.beginPath();
+    this.context.moveTo(x + this.squareSizeInPixels / 4, y - this.squareSizeInPixels / 4);
+    this.context.lineTo(x + this.squareSizeInPixels / 2, y - this.squareSizeInPixels / 2);
+    this.context.lineTo(x + this.squareSizeInPixels * 3 / 4, y - this.squareSizeInPixels / 4);
+    this.context.closePath();
+    this.context.stroke();
+
+    // Left arrow
+    this.context.beginPath();
+    this.context.moveTo(x - this.squareSizeInPixels / 4, y + this.squareSizeInPixels / 4);
+    this.context.lineTo(x - this.squareSizeInPixels / 2, y + this.squareSizeInPixels / 2);
+    this.context.lineTo(x - this.squareSizeInPixels / 4, y + this.squareSizeInPixels * 3 / 4);
+    this.context.closePath();
+    this.context.stroke();
+
+    // Right arrow
+    this.context.beginPath();
+    this.context.moveTo(x + this.squareSizeInPixels * 5 / 4, y + this.squareSizeInPixels / 4);
+    this.context.lineTo(x + this.squareSizeInPixels * 3 / 2, y + this.squareSizeInPixels / 2);
+    this.context.lineTo(x + this.squareSizeInPixels * 5 / 4, y + this.squareSizeInPixels * 3 / 4);
+    this.context.closePath();
+    this.context.stroke();
+
+    this.context.globalAlpha=1;
+  }
+
   drawImage(coordinate, image) {
     const x = coordinate.x * this.squareSizeInPixels;
     const y = coordinate.y * this.squareSizeInPixels;

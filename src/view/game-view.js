@@ -7,6 +7,7 @@ import {
   incrementNumberOfMovesLabel,
   muteBackgroundMusic,
   playBackgroundMusic,
+  playRobotBeepSound,
   playThudSound,
   playWinSound,
   resetNumberOfMovesLabel,
@@ -34,7 +35,6 @@ const THREE_NUMPAD_KEYCODE = 99
 const FOUR_KEYCODE = 52;
 const FOUR_NUMPAD_KEYCODE = 100;
 
-
 /**
  * Handles all requests related to the display of the game, not including the canvas
  */
@@ -43,13 +43,11 @@ export default class GameView {
     keyDownCallback,
     initializeGameCallback,
     initializeGameWithPuzzleIdCallback,
-    swapControlsCallback,
   ) {
     this.volume = 0.1;
     this.keyDownCallback = keyDownCallback;
     this.initializeGameCallback = initializeGameCallback;
     this.initializeGameWithPuzzleIdCallback = initializeGameWithPuzzleIdCallback;
-    this.swapControlsCallback = swapControlsCallback;
     window.addEventListener('keydown', this._handleKeyDown.bind(this), true);
     getMuteButton().addEventListener('click', this._handleMuteButtonClicked.bind(this));
     getNewPuzzleButton().addEventListener('click', this.initializeGameCallback);
@@ -57,9 +55,9 @@ export default class GameView {
     showApp();
   }
 
-  initializeGame(puzzleId, minimumNumberOfMoves, activeRobot) {
+  initializeGame(puzzleId, minimumNumberOfMoves, activeRobotInfo) {
     this.puzzleId = puzzleId;
-    this.activeRobot = activeRobot;
+    this.activeRobotInfo = activeRobotInfo;
     this.hideVictoryScreen();
     resetNumberOfMovesLabel();
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
@@ -67,9 +65,11 @@ export default class GameView {
     swapRobotControlsToRed();
   }
 
-  robotHasStoppedMoving() {
+  robotHasStoppedMoving(hasMoved) {
     playThudSound(this.volume);
-    incrementNumberOfMovesLabel();
+    if (hasMoved) {
+      incrementNumberOfMovesLabel();
+    }
   }
 
   hideVictoryScreen() {
@@ -88,22 +88,26 @@ export default class GameView {
       case ONE_KEYCODE:
       case ONE_NUMPAD_KEYCODE:
           swapRobotControlsToRed();
-          this.activeRobot = ROBOTS.RED.id;
+          this.activeRobotInfo = ROBOTS.RED.id;
+          playRobotBeepSound(this.volume);
           break;
       case TWO_KEYCODE:
       case TWO_NUMPAD_KEYCODE:
           swapRobotControlsToGreen();
-          this.activeRobot = ROBOTS.GREEN.id;
+          this.activeRobotInfo = ROBOTS.GREEN.id;
+          playRobotBeepSound(this.volume);
           break;
       case THREE_KEYCODE:
       case THREE_NUMPAD_KEYCODE:
           swapRobotControlsToBlue();
-          this.activeRobot = ROBOTS.BLUE.id;
+          this.activeRobotInfo = ROBOTS.BLUE.id;
+          playRobotBeepSound(this.volume);
           break;
       case FOUR_KEYCODE:
       case FOUR_NUMPAD_KEYCODE:
           swapRobotControlsToYellow();
-          this.activeRobot = ROBOTS.YELLOW.id;
+          this.activeRobotInfo = ROBOTS.YELLOW.id;
+          playRobotBeepSound(this.volume);
           break;
       default:
           break;
