@@ -63,8 +63,8 @@ export default class GameController {
     this.canvasView.clearAndDrawBoard();
 
     this.canvasView.drawSquare(this.puzzle.goalLocation, this.puzzle.goalColor);
-    this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
     this.canvasView.drawWalls(this.puzzle.walls, '#373b42', 'lightgray');
+    this.canvasView.drawText(this.puzzle.goalLocation, 'white', 'Goal');
 
     // Draw all robots
     for (const robot of this.puzzle.robots) {
