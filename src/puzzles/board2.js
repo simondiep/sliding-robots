@@ -18,6 +18,6 @@ export const board = [
   'SW  ,S   ,S   ,SEY ,S   ,S   ,S   ,S   ,S   ,S   ,S   ,S   ,SW  ,S   ,S   ,SE  ', // 15
 ];
 
-export const minimumNumberOfMoves = 11;
+export const minimumNumberOfMoves = 5;
 // Solution
-// Y up, Y left, R right, R down, R left, R down, R right, R up, R right, Y right, Y up
+// Y up, Y right, Y down, Y left, Y up

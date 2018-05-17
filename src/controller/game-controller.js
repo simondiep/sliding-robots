@@ -84,7 +84,7 @@ export default class GameController {
         this.puzzle.goalColor === robot.getColor() &&
         robot.getLocation().equals(this.puzzle.goalLocation)
       ) {
-        this.gameView.robotHasStoppedMoving();
+        this.gameView.robotHasStoppedMoving(true);
         this.gameView.showVictoryScreen();
         return;
       }
