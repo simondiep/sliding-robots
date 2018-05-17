@@ -16,7 +16,6 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
   * Create base quadrants to rotate and combine into different board states
     * https://github.com/sdtsui/ricochet-backbone/blob/development/app/scripts/models/quadrantHolderModel.js
 * Display previous commands
-* More challenging puzzles
 
 ## Development notes
 
