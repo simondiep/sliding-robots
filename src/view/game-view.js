@@ -34,6 +34,9 @@ const THREE_KEYCODE = 51;
 const THREE_NUMPAD_KEYCODE = 99;
 const FOUR_KEYCODE = 52;
 const FOUR_NUMPAD_KEYCODE = 100;
+const E_KEYCODE = 69;
+const M_KEYCODE = 77;
+const R_KEYCODE = 82;
 
 /**
  * Handles all requests related to the display of the game, not including the canvas
@@ -138,6 +141,21 @@ export default class GameView {
         this.initializeGameCallback();
         return;
       }
+    }
+
+    if (e.keyCode === E_KEYCODE) {
+      this.initializeGameCallback();
+      return;
+    }
+
+    if (e.keyCode === M_KEYCODE) {
+      this.volume = 0;
+      muteBackgroundMusic();
+    }
+
+    if (e.keyCode === R_KEYCODE) {
+      this.initializeGameWithPuzzleIdCallback(this.puzzleId);
+      return;
     }
 
     this._swapRobotControls(e.keyCode);
