@@ -12,10 +12,8 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 * High scores similar to http://www.robotreboot.com/highscore
 * Add goal robot number to goal square
 * Ability to select a specific premade puzzle
-* Procedurally generated puzzles based on seed
-  * Create base quadrants to rotate and combine into different board states
-    * https://github.com/sdtsui/ricochet-backbone/blob/development/app/scripts/models/quadrantHolderModel.js
 * Display previous commands
+* More board variants
 
 ## Development notes
 

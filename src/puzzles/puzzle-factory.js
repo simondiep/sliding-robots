@@ -4,6 +4,7 @@ import Robot, { ROBOTS } from '../model/robot.js';
 import { board as board1, minimumNumberOfMoves as minimumNumberOfMoves1 } from './board1.js';
 import { board as board2, minimumNumberOfMoves as minimumNumberOfMoves2 } from './board2.js';
 import { board as board3, minimumNumberOfMoves as minimumNumberOfMoves3 } from './board3.js';
+import { getRandomBoard } from './random-board-factory.js';
 
 const puzzleFactory = {
   1: () => ({
@@ -18,22 +19,24 @@ const puzzleFactory = {
     ...parseBoard(board3),
     minimumNumberOfMoves: minimumNumberOfMoves3,
   }),
+  random: () => ({
+    ...parseBoard(getRandomBoard()),
+    minimumNumberOfMoves: 'N/A',
+  }),
 };
 
 // Store last random puzzle
-let lastRandomPuzzleId;
+const completedPuzzleIds = [];
 
 // Return a new puzzle if you've recently completed one
 export function getRandomPuzzleId() {
-  const ids = Object.keys(puzzleFactory);
-  if (lastRandomPuzzleId) {
-    const index = ids.indexOf(lastRandomPuzzleId);
-    if (index !== -1) {
-      ids.splice(index, 1);
-    }
+  const allPuzzleIds = Object.keys(puzzleFactory);
+  let newPuzzleIds = allPuzzleIds.filter(puzzleId => !completedPuzzleIds.includes(puzzleId));
+
+  const randomPuzzleId = newPuzzleIds[Math.floor(Math.random() * newPuzzleIds.length)];
+  if (randomPuzzleId !== 'random') {
+    completedPuzzleIds.push(randomPuzzleId);
   }
-  const randomPuzzleId = ids[Math.floor(Math.random() * ids.length)];
-  lastRandomPuzzleId = randomPuzzleId;
   return randomPuzzleId;
 }
 
@@ -83,16 +86,16 @@ function parseBoard(boardAsArray) {
       }
 
       // Goal
-      if (value.indexOf('Gb') > -1) {
+      if (value.indexOf('gb') > -1) {
         goalColor = 'blue';
         goalLocation = new Coordinate(colIndex, rowIndex);
-      } else if (value.indexOf('Gg') > -1) {
+      } else if (value.indexOf('gg') > -1) {
         goalColor = 'green';
         goalLocation = new Coordinate(colIndex, rowIndex);
-      } else if (value.indexOf('Gr') > -1) {
+      } else if (value.indexOf('gr') > -1) {
         goalColor = 'red';
         goalLocation = new Coordinate(colIndex, rowIndex);
-      } else if (value.indexOf('Gy') > -1) {
+      } else if (value.indexOf('gy') > -1) {
         goalColor = 'yellow';
         goalLocation = new Coordinate(colIndex, rowIndex);
       }
