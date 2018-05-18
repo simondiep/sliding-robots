@@ -6,8 +6,11 @@
 </head>
 
 <body>
-  <div id="overlay">
-    <div id="overlay_text">You Win!  Press space to restart.</div>
+  <div id="win_screen_overlay">
+    <div id="win_screen_overlay_text">
+      <label>You Win!</label>
+      <label>Press space to continue.</label>
+    </div>
   </div>
   <div id="app" style="display:none;">
     <div class="header" style="visibility:hidden">
@@ -39,7 +42,7 @@
       </div>
     </div>
     <div id="game-board"></div>
-    <p style="text-align:justify">
+    <p style="vertical-align: middle">
       <b>Instructions:</b> Move the matching-colored Robot to the Goal Square.
     </p>
     <p>

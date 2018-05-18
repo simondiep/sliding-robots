@@ -21,9 +21,7 @@ body {
   border: 2px solid #a2a2a2;
   color: #a2a2a2;
   text-align: center;
-  vertical-align: middle;
-  padding: 0 2px 0 2px;
-  height: 1.8rem;
+  padding: 10px;
   cursor: pointer;
   display: inline-block;
   user-select: none;
@@ -41,7 +39,7 @@ body {
   justify-content: space-between;
 }
 
-#overlay {
+#win_screen_overlay {
   position: fixed;
   display: none;
   width: 100%;
@@ -55,14 +53,19 @@ body {
   cursor: pointer;
 }
 
-#overlay_text {
+#win_screen_overlay_text {
   position: absolute;
   top: 50%;
   left: 50%;
   font-size: 50px;
   color: white;
+  text-align: center;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+#win_screen_overlay_text label {
+  display: block;
 }
 
 #robot-control-box {
@@ -78,6 +81,7 @@ body {
 #robot-control-box img {
   max-height: 40px;
   max-width: 40px;
+  vertical-align: middle;
 }
 
 #robot-control-box .selected {

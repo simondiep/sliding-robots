@@ -49,8 +49,8 @@ export function resetNumberOfMovesLabel() {
   document.getElementById('numberOfMovesLabel').innerHTML = 0;
 }
 
-export function hideOverlay() {
-  document.getElementById('overlay').style.display = 'none';
+export function hideWinScreenOverlay() {
+  document.getElementById('win_screen_overlay').style.display = 'none';
 }
 
 export function muteBackgroundMusic() {
@@ -108,8 +108,8 @@ export function showHeaderBar() {
   }
 }
 
-export function showOverlay() {
-  document.getElementById('overlay').style.display = 'block';
+export function showWinScreenOverlay() {
+  document.getElementById('win_screen_overlay').style.display = 'block';
 }
 
 export function swapRobotControlsToRed() {

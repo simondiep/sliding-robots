@@ -20,7 +20,6 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
   * Store this in local storage
 * Sound effect for button clicks
 * Hotkeys for buttons
-* Styling - Center the canvas to match header
 * Keep robots in same place but generate new goal location on completion
 
 ## Development notes

@@ -3,7 +3,7 @@ import {
   getMuteButton,
   getNewPuzzleButton,
   getRestartButton,
-  hideOverlay,
+  hideWinScreenOverlay,
   incrementNumberOfMovesLabel,
   muteBackgroundMusic,
   playBackgroundMusic,
@@ -14,7 +14,7 @@ import {
   setMinimumNumberOfMovesLabel,
   setPuzzleNumber,
   showApp,
-  showOverlay,
+  showWinScreenOverlay,
   showHeaderBar,
   swapRobotControlsToRed,
   swapRobotControlsToGreen,
@@ -31,7 +31,7 @@ const ONE_NUMPAD_KEYCODE = 97;
 const TWO_KEYCODE = 50;
 const TWO_NUMPAD_KEYCODE = 98;
 const THREE_KEYCODE = 51;
-const THREE_NUMPAD_KEYCODE = 99
+const THREE_NUMPAD_KEYCODE = 99;
 const FOUR_KEYCODE = 52;
 const FOUR_NUMPAD_KEYCODE = 100;
 
@@ -39,11 +39,7 @@ const FOUR_NUMPAD_KEYCODE = 100;
  * Handles all requests related to the display of the game, not including the canvas
  */
 export default class GameView {
-  constructor(
-    keyDownCallback,
-    initializeGameCallback,
-    initializeGameWithPuzzleIdCallback,
-  ) {
+  constructor(keyDownCallback, initializeGameCallback, initializeGameWithPuzzleIdCallback) {
     this.volume = 0.1;
     this.keyDownCallback = keyDownCallback;
     this.initializeGameCallback = initializeGameCallback;
@@ -73,44 +69,44 @@ export default class GameView {
   }
 
   hideVictoryScreen() {
-    hideOverlay();
-    this.overlayVisible = false;
+    hideWinScreenOverlay();
+    this.winScreenOverlayVisible = false;
   }
 
   showVictoryScreen() {
     playWinSound(this.volume);
-    showOverlay();
-    this.overlayVisible = true;
+    showWinScreenOverlay();
+    this.winScreenOverlayVisible = true;
   }
 
   _swapRobotControls(keyCode) {
-    switch(keyCode) {
+    switch (keyCode) {
       case ONE_KEYCODE:
       case ONE_NUMPAD_KEYCODE:
-          swapRobotControlsToRed();
-          this.activeRobotInfo = ROBOTS.RED.id;
-          playRobotBeepSound(this.volume);
-          break;
+        swapRobotControlsToRed();
+        this.activeRobotInfo = ROBOTS.RED.id;
+        playRobotBeepSound(this.volume);
+        break;
       case TWO_KEYCODE:
       case TWO_NUMPAD_KEYCODE:
-          swapRobotControlsToGreen();
-          this.activeRobotInfo = ROBOTS.GREEN.id;
-          playRobotBeepSound(this.volume);
-          break;
+        swapRobotControlsToGreen();
+        this.activeRobotInfo = ROBOTS.GREEN.id;
+        playRobotBeepSound(this.volume);
+        break;
       case THREE_KEYCODE:
       case THREE_NUMPAD_KEYCODE:
-          swapRobotControlsToBlue();
-          this.activeRobotInfo = ROBOTS.BLUE.id;
-          playRobotBeepSound(this.volume);
-          break;
+        swapRobotControlsToBlue();
+        this.activeRobotInfo = ROBOTS.BLUE.id;
+        playRobotBeepSound(this.volume);
+        break;
       case FOUR_KEYCODE:
       case FOUR_NUMPAD_KEYCODE:
-          swapRobotControlsToYellow();
-          this.activeRobotInfo = ROBOTS.YELLOW.id;
-          playRobotBeepSound(this.volume);
-          break;
+        swapRobotControlsToYellow();
+        this.activeRobotInfo = ROBOTS.YELLOW.id;
+        playRobotBeepSound(this.volume);
+        break;
       default:
-          break;
+        break;
     }
   }
 
@@ -137,7 +133,7 @@ export default class GameView {
         showHeaderBar();
         return;
       }
-      if (this.overlayVisible) {
+      if (this.winScreenOverlayVisible) {
         this.hideVictoryScreen();
         this.initializeGameCallback();
         return;
