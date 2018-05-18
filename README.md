@@ -11,9 +11,17 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 * View a solution
 * High scores similar to http://www.robotreboot.com/highscore
 * Add goal robot number to goal square
+* Prettier goal image
 * Ability to select a specific premade puzzle
 * Display previous commands
 * More board variants
+* Smarter goal placement on random boards
+* Display number of completed puzzles
+  * Store this in local storage
+* Sound effect for button clicks
+* Hotkeys for buttons
+* Styling - Center the canvas to match header
+* Keep robots in same place but generate new goal location on completion
 
 ## Development notes
 
