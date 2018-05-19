@@ -18,7 +18,7 @@ export default class GameController {
       initializeGameWithPuzzleIdCallback,
     );
     this.board = {
-      SQUARE_SIZE_IN_PIXELS: 35,
+      SQUARE_SIZE_IN_PIXELS: 40,
       HORIZONTAL_SQUARES: 16,
       VERTICAL_SQUARES: 16,
     };

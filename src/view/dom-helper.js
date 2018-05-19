@@ -74,6 +74,14 @@ export function playRobotBeepSound(volume) {
   }
 }
 
+export function playTickSound(volume) {
+  if (volume) {
+    const music = document.getElementById('sound-tick');
+    music.volume = volume;
+    music.play();
+  }
+}
+
 export function playThudSound(volume) {
   if (volume) {
     const music = document.getElementById('sound-thud');

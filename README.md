@@ -18,7 +18,6 @@ Try it out [here](https://simondiep.github.io/sliding-robots/)
 * Smarter goal placement on random boards
 * Display number of completed puzzles
   * Store this in local storage
-* Sound effect for button clicks
 * Restart button for random puzzles
 * Keep robots in same place but generate new goal location on completion
 

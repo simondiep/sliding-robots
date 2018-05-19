@@ -8,6 +8,7 @@ import {
   muteBackgroundMusic,
   playBackgroundMusic,
   playRobotBeepSound,
+  playTickSound,
   playThudSound,
   playWinSound,
   resetNumberOfMovesLabel,
@@ -62,6 +63,7 @@ export default class GameView {
     setMinimumNumberOfMovesLabel(minimumNumberOfMoves);
     setPuzzleNumber(puzzleId);
     swapRobotControlsToRed();
+    playTickSound(this.volume);
   }
 
   robotHasStoppedMoving(hasMoved) {
